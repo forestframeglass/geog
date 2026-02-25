@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Leaderboards — V2</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>.boards{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:980px;margin:16px auto}</style>
+</head>
+<body>
+  <header>
+    <h1>Leaderboards Overview — V2</h1>
+    <nav class="modes"><a href="index.html">Back</a></nav>
+  </header>
+  <main>
+    <section class="boards">
+      <div class="panel"><h2>Flag → Country</h2><table class="board-table"><thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead><tbody id="lb1"></tbody></table></div>
+      <div class="panel"><h2>Capital → Country</h2><table class="board-table"><thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead><tbody id="lb2"></tbody></table></div>
+      <div class="panel"><h2>Country → Capital</h2><table class="board-table"><thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead><tbody id="lb3"></tbody></table></div>
+      <div class="panel"><h2>Flag → Capital</h2><table class="board-table"><thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead><tbody id="lb4"></tbody></table></div>
+    </section>
+  </main>
+  <footer><small class="centerfoot">V2 · Top‑5 per mode</small></footer>
+  <script>
+    const PREFIX='gt.v2.lb.';
+    function key(mode){ return PREFIX+mode; }
+    function load(mode){ try{return JSON.parse(localStorage.getItem(key(mode)))||[];}catch{return [];} }
+    function fmtMS(ms){ const t=Math.floor(ms/1000); const m=String(Math.floor(t/60)).padStart(2,'0'); const s=String(t%60).padStart(2,'0'); const d=Math.floor((ms%1000)/100); return `${m}:${s}.${d}`; }
+    function fmtDate(ts){ const d=new Date(ts); return d.toISOString().slice(0,10); }
+    function render(id,list){ const body=document.getElementById(id); body.innerHTML=''; list.slice(0,5).forEach((it,i)=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${i+1}</td><td>${fmtMS(it.ms)}</td><td>${fmtDate(it.when)}</td><td>${it.stats?.reveals??0}</td><td>${it.stats?.bestStreak??0}</td>`; body.appendChild(tr); }); }
+    render('lb1', load('flag-to-country'));
+    render('lb2', load('capital-to-country'));
+    render('lb3', load('country-to-capital'));
+    render('lb4', load('flag-to-capital'));
+  </script>
+</body>
+</html>

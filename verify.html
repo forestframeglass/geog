@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Verify SVGs — V2</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header><h1>SVG Verification — V2</h1></header>
+  <main style="max-width:980px;margin:16px auto">
+    <p>This page checks that every <code>flag</code> path in <code>data_v2.js</code> exists on your site (200 Ok). Upload your full SVG set to <code>svg/</code> first, then reload.</p>
+    <details open><summary>Results</summary>
+      <table class="board-table"><thead><tr><th>Flag Path</th><th>Status</th></tr></thead><tbody id="res"></tbody></table>
+    </details>
+  </main>
+  <script src="data_v2.js"></script>
+  <script>
+    (async function(){
+      const tbody = document.getElementById('res');
+      async function check(url){
+        try{ const r = await fetch(url, {cache:'no-store'}); return r.ok ? 'OK' : r.status; }catch(e){ return 'ERR'; }
+      }
+      for(const r of (window.DATA||[])){
+        if(!r.flag) continue;
+        const tr=document.createElement('tr');
+        const td1=document.createElement('td'); td1.textContent=r.flag; tr.appendChild(td1);
+        const td2=document.createElement('td'); td2.textContent='…'; tr.appendChild(td2);
+        tbody.appendChild(tr);
+        const status = await check(r.flag);
+        td2.textContent = status;
+        td2.style.color = (status==='OK')? '#34d399': '#f87171';
+      }
+    })();
+  </script>
+</body>
+</html>
