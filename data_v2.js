@@ -88,7 +88,9 @@ window.DATA = [
     "country": "Anguilla",
     "countryAlt": [],
     "capital": "The Valley",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Valley"
+    ],
     "flag": "svg/ai.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -139,7 +141,7 @@ window.DATA = [
     "capitalAlt": [],
     "flag": "svg/aw.svg",
     "flagDupGroup": null,
-    "capDupGroup": null
+    "capDupGroup": "Yes Aruba"
   },
   {
     "iso": "AN",
@@ -272,7 +274,9 @@ window.DATA = [
     "country": "Benin",
     "countryAlt": [],
     "capital": "Porto-Novo",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Porto Novo"
+    ],
     "flag": "svg/bj.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -733,7 +737,7 @@ window.DATA = [
     "capitalAlt": [],
     "flag": "svg/gb-eng.svg",
     "flagDupGroup": null,
-    "capDupGroup": null
+    "capDupGroup": "Yes United Kingdom"
   },
   {
     "iso": "GQ",
@@ -975,7 +979,9 @@ window.DATA = [
     "country": "Guadeloupe",
     "countryAlt": [],
     "capital": "Basse-Terre",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Basse Terre"
+    ],
     "flag": "svg/gp.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -1050,7 +1056,9 @@ window.DATA = [
     "country": "Haiti",
     "countryAlt": [],
     "capital": "Port-au-Prince",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Port au Prince"
+    ],
     "flag": "svg/ht.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -1199,7 +1207,7 @@ window.DATA = [
     "capitalAlt": [],
     "flag": "svg/jm.svg",
     "flagDupGroup": null,
-    "capDupGroup": "Yes Kingston"
+    "capDupGroup": "Yes Jamaica"
   },
   {
     "iso": "JP",
@@ -1482,7 +1490,9 @@ window.DATA = [
     "country": "Martinique",
     "countryAlt": [],
     "capital": "Fort-de-France",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Fort de France"
+    ],
     "flag": "svg/mq.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -1543,7 +1553,7 @@ window.DATA = [
     "iso": "MD",
     "country": "Moldova",
     "countryAlt": [],
-    "capital": "Chi?in?u",
+    "capital": "Chișinău",
     "capitalAlt": [
       "Chisinau"
     ],
@@ -1731,7 +1741,7 @@ window.DATA = [
     "capitalAlt": [],
     "flag": "svg/nf.svg",
     "flagDupGroup": null,
-    "capDupGroup": "Yes Kingston"
+    "capDupGroup": "Yes Jamaica"
   },
   {
     "iso": "KP",
@@ -1970,7 +1980,9 @@ window.DATA = [
       "Reunion"
     ],
     "capital": "Saint-Denis",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Saint Denis"
+    ],
     "flag": "svg/re.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -2011,7 +2023,8 @@ window.DATA = [
     "countryAlt": [],
     "capital": "The Bottom",
     "capitalAlt": [
-      "Botte"
+      "Botte",
+      "Bottom"
     ],
     "flag": "svg/dc.svg",
     "flagDupGroup": null,
@@ -2100,7 +2113,9 @@ window.DATA = [
       "St. Pierre and Miquelon"
     ],
     "capital": "Saint-Pierre",
-    "capitalAlt": [],
+    "capitalAlt": [
+      "Saint Pierre"
+    ],
     "flag": "svg/pm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
@@ -2237,7 +2252,7 @@ window.DATA = [
     "capitalAlt": [],
     "flag": "svg/su.svg",
     "flagDupGroup": null,
-    "capDupGroup": null
+    "capDupGroup": "Yes Aruba"
   },
   {
     "iso": "SX",
@@ -2704,7 +2719,7 @@ window.DATA = [
     "capitalAlt": [],
     "flag": "svg/gb.svg",
     "flagDupGroup": null,
-    "capDupGroup": null
+    "capDupGroup": "Yes United Kingdom"
   },
   {
     "iso": "US",
