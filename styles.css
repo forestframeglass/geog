@@ -82,3 +82,9 @@ header.topbar .topbar-right{
   outline-offset: 2px;
   text-decoration: none;
 }
+
+/* Make .btn-link look "active" when needed */
+.btn-link.is-active {
+  border-color: var(--accent);
+  color: #fff;
+}
