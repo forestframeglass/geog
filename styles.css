@@ -88,3 +88,9 @@ header.topbar .topbar-right{
   border-color: var(--accent);
   color: #fff;
 }
+
+/* keep a bit of gap when the Back link sits with the mode buttons */
+.modes .btn-link { margin-left: 8px; }
+
+/* make sure visited state doesn't change the button color */
+.btn-link:visited { color: var(--ink); }
