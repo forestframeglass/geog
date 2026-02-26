@@ -4,18 +4,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Geo Trainer — V2 Quiz</title>
+  <title>Geography Trainer</title>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <header>
-    <h1>Geography Trainer — V2</h1>
+    <h1>Geography Trainer</h1>
     <nav class="modes">
       <button data-mode="flag-to-country" class="active">Flag → Country</button>
       <button data-mode="capital-to-country">Capital → Country</button>
       <button data-mode="country-to-capital">Country → Capital</button>
       <button data-mode="flag-to-capital">Flag → Capital</button>
-      <a style="margin-left:8px" href="index.html">Back</a>
+      <a style="margin-left:8px;color:white" href="index.html">Home</a>
     </nav>
   </header>
   <main>
@@ -36,7 +36,7 @@
 
     <section class="question">
       <div id="prompt"></div>
-      <div id="dupBadge" class="badge hidden">multiple answers available, don't reuse the same one</div>
+      <div id="dupBadge" class="badge hidden">Multiple answers available, don't reuse the same one!</div>
       <div id="flagWrap" class="flag hidden">
         <img id="flagImg" alt="Flag" />
       </div>
@@ -59,9 +59,9 @@
         </table>
       </div>
       <div class="panel">
-        <h2>Leaderboard (this mode)</h2>
+        <h2>Leaderboard</h2>
         <table class="board-table">
-          <thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>No. Reveals</th><th>Best Streak</th></tr></thead>
+          <thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead>
           <tbody id="leaderboardBody"></tbody>
         </table>
         <button id="clearLeaderboard">Clear Leaderboard</button>
@@ -69,7 +69,7 @@
     </section>
   </main>
   <footer>
-    <small class="centerfoot">V2 · Ctrl/⌘+R to Reveal · <a href="leaderboards.html">Leaderboards Overview</a></small>
+    <small class="centerfoot">Ctrl+R to Reveal</small>
   </footer>
   <script src="data_v2.js"></script>
   <script src="app_v2.js"></script>
