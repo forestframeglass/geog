@@ -42,6 +42,10 @@
   const revealedBody = document.getElementById('revealedBody');
   const leaderboardBody = document.getElementById('leaderboardBody');
   const clearLbBtn = document.getElementById('clearLeaderboard');
+  const hudProgress = document.getElementById('hudProgress');
+const hudCorrect  = document.getElementById('hudCorrect');
+const hudStreak   = document.getElementById('hudStreak');
+const hudReveals  = document.getElementById('hudReveals');
 
   // State
   let DATA = window.DATA || [];
@@ -119,10 +123,20 @@
     USED_BY_CLUSTER[info.key] = USED_BY_CLUSTER[info.key] || new Set();
     USED_BY_CLUSTER[info.key].add(ek);
   }
+function updateRibbonPills(){
+  const total = QUEUE.length || 0;
+  // current question index is 1-based for display; cap at total if finished
+  const current = Math.min(qIndex + (finished ? 0 : 1), Math.max(total, 1));
+  const remaining = Math.max(total - (finished ? qIndex : (qIndex + 1)), 0);
 
+  if (hudProgress) hudProgress.textContent = `${current}/${total} (${remaining} left)`;
+  if (hudCorrect)  hudCorrect.textContent  = `Correct: ${correct}`;
+  if (hudStreak)   hudStreak.textContent   = `Streak: ${streak} (${bestStreak})`;
+  if (hudReveals)  hudReveals.textContent  = `Reveals: ${reveals}`;
+}
   // UI helpers
-  function resetCounters(total){ qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false; for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k]; qTotalEl.textContent=total; updateCounters(); revealedBody.innerHTML=''; feedback.textContent=''; feedback.className='feedback'; }
-  function updateCounters(){ qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); correctEl.textContent=correct; streakEl.textContent=streak; bestStreakEl.textContent=bestStreak; revealsEl.textContent=reveals; }
+  function resetCounters(total){ qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false; for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k]; qTotalEl.textContent=total; updateCounters(); revealedBody.innerHTML=''; feedback.textContent=''; feedback.className='feedback';  updateRibbonPills();   }
+  function updateCounters(){ qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); correctEl.textContent=correct; streakEl.textContent=streak; bestStreakEl.textContent=bestStreak; revealsEl.textContent=reveals;   updateRibbonPills();  }
   function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(()=>{ timerEl.textContent=fmtMS(performance.now()-startTs); }, 100); }
   function stopTimer(){ clearInterval(tickHandle); tickHandle=null; }
 
@@ -183,3 +197,4 @@
   const btn = document.querySelector(`.modes button[data-mode="${MODE}"]`); if(btn){ btn.classList.add('active'); }
   startGame(MODE);
 })();
+.counts { display: none; }
