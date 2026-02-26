@@ -22,20 +22,26 @@
 
   </header>
   <main>
-    <section class="hud">
-      <div class="timer">⏱ <span id="timer">00:00.0</span></div>
-      <div class="counts">
-        <span>Q: <span id="qIndex">0</span>/<span id="qTotal">0</span></span>
-        <span>Remaining: <span id="remaining">0</span></span>
-        <span>Correct: <span id="correct">0</span></span>
-        <span>Streak: <span id="streak">0</span></span>
-        <span>Best Streak: <span id="bestStreak">0</span></span>
-        <span>Reveals: <span id="reveals">0</span></span>
-      </div>
-      <div class="controls">
-        <button id="newGame">New Game</button>
-      </div>
-    </section>
+    <section class="hud hud--ribbon">
+  <div class="ribbon" role="group" aria-label="Game info ribbon">
+    <!-- Stopwatch (unchanged) -->
+    <div class="stopwatch">⏱ <span id="timer">00:00.0</span></div>
+
+    <!-- Larger spacer between stopwatch and pills -->
+    <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
+
+    <!-- “Game pills” (button-styled info) -->
+    javascript:void(0)1/0 (0 left)</a>
+    javascript:void(0)Correct: 0</a>
+    <a class="pill" id="hudStreak"   href="javascript:void(00)Reveals: 0</a>
+
+    <!-- Larger spacer between pills and New Game -->
+    <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
+
+    <!-- New Game (as-is, but shares the row) -->
+    <button id="newGame">New Game</button>
+  </div>
+</section>
 
     <section class="question">
       <div id="prompt"></div>
