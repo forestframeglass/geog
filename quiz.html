@@ -1,47 +1,57 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="theme-color" content="#0b1220"/>
   <title>Geography Trainer</title>
-  <link rel="stylesheet" href="styles.css"/>
+  styles.css
 </head>
 <body>
   <header>
     <h1>Geography Trainer</h1>
-
-<nav class="modes">
-  <button data-mode="flag-to-country" class="active">Flag → Country</button>
-  <button data-mode="capital-to-country">Capital → Country</button>
-  <button data-mode="country-to-capital">Country → Capital</button>
-  <button data-mode="flag-to-capital">Flag → Capital</button>
-
- <a href="index.html" style = "color:white">Home</a>
-</nav>
-
+    <nav class="modes">
+      <button data-mode="flag-to-country" class="active">Flag → Country</button>
+      <button data-mode="capital-to-country">Capital → Country</button>
+      <button data-mode="country-to-capital">Country → Capital</button>
+      <button data-mode="flag-to-capital">Flag → Capital</button>
+      <a href="index.html" style="color:white">Home</a>
+    </nav>
   </header>
+
   <main>
+    <!-- NEW centred info ribbon -->
     <section class="hud hud--ribbon">
-  <div class="ribbon" role="group" aria-label="Game info ribbon">
-    <!-- Stopwatch (unchanged) -->
-    <div class="stopwatch">⏱ <span id="timer">00:00.0</span></div>
+      <div class="ribbon" role="group" aria-label="Game info ribbon">
+        <!-- Stopwatch (unchanged) -->
+        <div class="stopwatch">⏱ <span id="timer">00:00.0</span></div>
 
-    <!-- Larger spacer between stopwatch and pills -->
-    <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
+        <!-- Larger spacer between stopwatch and pills -->
+        <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
 
-    <!-- “Game pills” (button-styled info) -->
-    javascript:void(0)1/0 (0 left)</a>
-    javascript:void(0)Correct: 0</a>
-    <a class="pill" id="hudStreak"   href="javascript:void(00)Reveals: 0</a>
+        <!-- Info “pills” -->
+        javascript:void(0)1/0 (0 left)</a>
+        javascript:void(0)Correct: 0</a>
+        javascript:void(0)Streak: 0 (0)</a>
+        javascript:void(0)Reveals: 0</a>
 
-    <!-- Larger spacer between pills and New Game -->
-    <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
+        <!-- Larger spacer between pills and New Game -->
+        <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
 
-    <!-- New Game (as-is, but shares the row) -->
-    <button id="newGame">New Game</button>
-  </div>
-</section>
+        <!-- New Game (same button, shares the row) -->
+        <button id="newGame">New Game</button>
+      </div>
+
+      <!-- Hidden legacy counters for app compatibility -->
+      <div class="counts hidden" aria-hidden="true" style="display:none">
+        <span>Q: <span id="qIndex">0</span>/<span id="qTotal">0</span></span>
+        <span>Remaining: <span id="remaining">0</span></span>
+        <span>Correct: <span id="correct">0</span></span>
+        <span>Streak: <span id="streak">0</span></span>
+        <span>Best Streak: <span id="bestStreak">0</span></span>
+        <span>Reveals: <span id="reveals">0</span></span>
+      </div>
+    </section>
 
     <section class="question">
       <div id="prompt"></div>
@@ -70,17 +80,41 @@
       <div class="panel">
         <h2>Leaderboard</h2>
         <table class="board-table">
-          <thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>No. Reveals</th><th>Best Streak</th></tr></thead>
+          <thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead>
           <tbody id="leaderboardBody"></tbody>
         </table>
         <button id="clearLeaderboard">Clear Leaderboard</button>
       </div>
     </section>
   </main>
+
   <footer>
     <small class="centerfoot">Ctrl+R to Reveal</small>
   </footer>
-  <script src="data_v2.js"></script>
-  <script src="app_v2.js"></script>
+
+  <!-- Data then app -->
+  data_v2.js</script>
+  <script srcscript>
+
+  <!-- Stable mobile viewport helper -->
+  <script>
+    (function setVhUnit(){
+      function apply(){ document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px'); }
+      apply();
+      window.addEventListener('resize', apply);
+      window.addEventListener('orientationchange', apply);
+    })();
+  </script>
+
+  <!-- Keyboard-aware scroll into view -->
+  <script>
+    (function keyboardIntoView(){
+      const el = document.getElementById('answerInput');
+      if(!el) return;
+      el.addEventListener('focus', () => {
+        setTimeout(() => { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 50);
+      });
+    })();
+  </script>
 </body>
 </html>
