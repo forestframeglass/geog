@@ -1,17 +1,18 @@
+
 // Geo Trainer V2 — gameplay
-// Case-insensitive only; no extra aliasing beyond provided Alt columns.
+// Notes: case-insensitive only; no extra aliasing beyond provided Alt columns.
 
 (function(){
   const MODES = ['flag-to-country','capital-to-country','country-to-capital','flag-to-capital'];
   const LB_PREFIX = 'gt.v2.lb.';   // fresh namespace for V2
-  const INIT_FLAG = 'gt.v2.init';  // one-time wipe flag
+  const INIT_FLAG = 'gt.v2.init';   // one-time wipe flag
 
   // One-time: wipe any old leaderboards (V1 keys, older experiments)
   try{
     if(!localStorage.getItem(INIT_FLAG)){
       const keys = Object.keys(localStorage);
       for(const k of keys){
-        if(k.startsWith('geo.lb.') || k.startsWith('lb.') || k.startsWith('gt.lb.') || k.startsWith('geo.v1.')){
+        if(k.startsWith('geo.lb.') || k.startsWith('lb.') || k.startsWith('gt.lb.') || k.startsWith('geo.v1.') ){
           localStorage.removeItem(k);
         }
       }
@@ -30,8 +31,6 @@
   const feedback = document.getElementById('feedback');
   const revealBtn = document.getElementById('revealBtn');
   const newGameBtn = document.getElementById('newGame');
-
-  // Legacy counters (hidden but kept for compatibility)
   const qIndexEl = document.getElementById('qIndex');
   const qTotalEl = document.getElementById('qTotal');
   const remainingEl = document.getElementById('remaining');
@@ -39,12 +38,10 @@
   const streakEl = document.getElementById('streak');
   const bestStreakEl = document.getElementById('bestStreak');
   const revealsEl = document.getElementById('reveals');
-
-  // New HUD “pills”
-  const hudProgress = document.getElementById('hudProgress');
-  const hudCorrect  = document.getElementById('hudCorrect');
-  const hudStreak   = document.getElementById('hudStreak');
-  const hudReveals  = document.getElementById('hudReveals');
+  const timerEl = document.getElementById('timer');
+  const revealedBody = document.getElementById('revealedBody');
+  const leaderboardBody = document.getElementById('leaderboardBody');
+  const clearLbBtn = document.getElementById('clearLeaderboard');
 
   // State
   let DATA = window.DATA || [];
@@ -56,29 +53,18 @@
   const USED_BY_CLUSTER = {}; // anti-reuse per duplicate group
 
   // Helpers
-  const toKey = s => (s||'').toString().trim().toLowerCase().replace(/\s+/g,' ');
-  const asSet = arr => { const s=new Set(); for(const a of (arr||[])) s.add(toKey(a)); return s; };
+  function toKey(s){ return (s||'').toString().trim().toLowerCase().replace(/\s+/g,' '); }
+  function asSet(arr){ const s=new Set(); for(const a of (arr||[])) s.add(toKey(a)); return s; }
   function shuffle(a){ const x=a.slice(); for(let i=x.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]]; } return x; }
   function fmtMS(ms){ const t=Math.floor(ms/1000); const m=String(Math.floor(t/60)).padStart(2,'0'); const s=String(t%60).padStart(2,'0'); const d=Math.floor((ms%1000)/100); return `${m}:${s}.${d}`; }
 
   function lbKey(mode){ return LB_PREFIX+mode; }
   function loadLB(mode){ try{ return JSON.parse(localStorage.getItem(lbKey(mode)))||[]; }catch{return [];} }
   function saveLB(mode,list){ localStorage.setItem(lbKey(mode), JSON.stringify(list)); }
-  function addLB(mode, ms, stats){
-    const item={ ms, when: Date.now(), stats };
-    const list=loadLB(mode).concat(item).sort((a,b)=>a.ms-b.ms).slice(0,10);
-    saveLB(mode,list); renderLB(mode,item.when);
-  }
-  function renderLB(mode, latestWhen){
-    const body = document.getElementById('leaderboardBody'); if(!body) return;
-    const list=loadLB(mode); body.innerHTML='';
-    list.forEach((it,idx)=>{
-      const tr=document.createElement('tr'); if(latestWhen && it.when===latestWhen) tr.classList.add('latest');
-      const tds=[idx+1, fmtMS(it.ms), new Date(it.when).toISOString().slice(0,10), it.stats.reveals, it.stats.bestStreak||0]
-        .map(v=>{const td=document.createElement('td'); td.textContent=String(v); return td;});
-      tds.forEach(td=>tr.appendChild(td)); body.appendChild(tr);
-    });
-  }
+  function addLB(mode, ms, stats){ const item={ ms, when: Date.now(), stats}; const list=loadLB(mode).concat(item).sort((a,b)=>a.ms-b.ms).slice(0,10); saveLB(mode,list); renderLB(mode,item.when); }
+  function renderLB(mode, latestWhen){ const list=loadLB(mode); if(leaderboardBody) leaderboardBody.innerHTML=''; list.forEach((it,idx)=>{ const tr=document.createElement('tr'); if(latestWhen && it.when===latestWhen) tr.classList.add('latest');
+    const tds=[idx+1, fmtMS(it.ms), new Date(it.when).toISOString().slice(0,10), it.stats.reveals, it.stats.bestStreak||0].map(v=>{const td=document.createElement('td'); td.textContent=String(v); return td;});
+    tds.forEach(td=>tr.appendChild(td)); leaderboardBody.appendChild(tr); }); }
 
   function clusterKey(q){
     if(q.type==='flag-to-country' || q.type==='flag-to-capital'){
@@ -134,44 +120,13 @@
     USED_BY_CLUSTER[info.key].add(ek);
   }
 
-  // HUD updates (new pills + legacy hidden spans)
-  function updateRibbonPills(){
-    const total = QUEUE.length || 0;
-    const current = Math.min(qIndex + (finished ? 0 : 1), Math.max(total, 1));
-    const remaining = Math.max(total - (finished ? qIndex : (qIndex + 1)), 0);
-    if (hudProgress) hudProgress.textContent = `${current}/${total} (${remaining} left)`;
-    if (hudCorrect)  hudCorrect.textContent  = `Correct: ${correct}`;
-    if (hudStreak)   hudStreak.textContent   = `Streak: ${streak} (${bestStreak})`;
-    if (hudReveals)  hudReveals.textContent  = `Reveals: ${reveals}`;
-  }
-
-  function resetCounters(total){
-    qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false;
-    for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k];
-    if(qTotalEl) qTotalEl.textContent=total;
-    updateCounters();
-    const revealedBody = document.getElementById('revealedBody'); if(revealedBody) revealedBody.innerHTML='';
-    feedback.textContent=''; feedback.className='feedback';
-    updateRibbonPills();
-  }
-  function updateCounters(){
-    if(qIndexEl) qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length);
-    if(remainingEl) remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0);
-    if(correctEl) correctEl.textContent=correct;
-    if(streakEl) streakEl.textContent=streak;
-    if(bestStreakEl) bestStreakEl.textContent=bestStreak;
-    if(revealsEl) revealsEl.textContent=reveals;
-    updateRibbonPills();
-  }
-
-  function startTimer(){
-    startTs=performance.now(); clearInterval(tickHandle);
-    tickHandle=setInterval(()=>{ const t=document.getElementById('timer'); if(t) t.textContent=fmtMS(performance.now()-startTs); }, 100);
-  }
+  // UI helpers
+  function resetCounters(total){ qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false; for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k]; qTotalEl.textContent=total; updateCounters(); revealedBody.innerHTML=''; feedback.textContent=''; feedback.className='feedback'; }
+  function updateCounters(){ qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); correctEl.textContent=correct; streakEl.textContent=streak; bestStreakEl.textContent=bestStreak; revealsEl.textContent=reveals; }
+  function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(()=>{ timerEl.textContent=fmtMS(performance.now()-startTs); }, 100); }
   function stopTimer(){ clearInterval(tickHandle); tickHandle=null; }
 
-  function renderQuestion(){
-    const q=QUEUE[qIndex]; if(!q) return; qShownTs=performance.now();
+  function renderQuestion(){ const q=QUEUE[qIndex]; if(!q) return; qShownTs=performance.now();
     const info = buildUnionValidExcludingUsed(q);
     if(info && info.rows && info.rows.length>1){ dupBadge.classList.remove('hidden'); dupBadge.textContent = "multiple answers available, don't reuse the same one"; }
     else dupBadge.classList.add('hidden');
@@ -188,7 +143,6 @@
   }
 
   function pushRevealedEntry(q, guessText, displayAnswer){
-    const body = document.getElementById('revealedBody'); if(!body) return;
     const row = document.createElement('tr');
     const tdQ=document.createElement('td');
     if(q.type==='flag-to-country' || q.type==='flag-to-capital'){
@@ -197,65 +151,21 @@
     const tdA=document.createElement('td'); tdA.textContent=displayAnswer||'';
     const tdG=document.createElement('td'); tdG.textContent=guessText||'';
     row.appendChild(tdQ); row.appendChild(tdA); row.appendChild(tdG);
-    body.prepend(row);
+    revealedBody.prepend(row);
   }
 
-  function revealCurrent(){
-    const q=QUEUE[qIndex]; if(!q) return;
-    const corr=q.expect==='country'?[...q.countrySet][0]:[...q.capitalSet][0];
-    const disp=q.label||corr; reveals++;
-    const info=buildUnionValidExcludingUsed(q);
-    consumeEntityForCluster(q, info, toKey(q.label));
-    pushRevealedEntry(q, input.value, disp);
-    if(revealsEl) revealsEl.textContent=reveals;
-    updateRibbonPills();
-    nextQuestion();
-  }
+  function revealCurrent(){ const q=QUEUE[qIndex]; if(!q) return; const corr=q.expect==='country'?[...q.countrySet][0]:[...q.capitalSet][0]; const disp=q.label||corr; reveals++; const info=buildUnionValidExcludingUsed(q); consumeEntityForCluster(q, info, toKey(q.label)); pushRevealedEntry(q, input.value, disp); revealsEl.textContent=reveals; nextQuestion(); }
 
-  function nextQuestion(){
-    if(finished) return;
-    qIndex++;
-    if(qIndex>=QUEUE.length){
-      finished=true; stopTimer();
-      const elapsed=performance.now()-startTs;
-      addLB(MODE, elapsed, {reveals, bestStreak});
-      feedback.textContent=`Done — ${fmtMS(elapsed)}.`; feedback.className='feedback ok';
-      input.disabled=true; revealBtn.disabled=true;
-      updateRibbonPills();
-      return;
-    }
-    renderQuestion();
-  }
+  function nextQuestion(){ if(finished) return; qIndex++; if(qIndex>=QUEUE.length){ finished=true; stopTimer(); const elapsed=performance.now()-startTs; addLB(MODE, elapsed, {reveals, bestStreak}); feedback.textContent=`Done — ${fmtMS(elapsed)}.`; feedback.className='feedback ok'; input.disabled=true; revealBtn.disabled=true; return; } renderQuestion(); }
 
-  function submitAnswer(val){
-    const q=QUEUE[qIndex]; if(!q) return;
-    const info = buildUnionValidExcludingUsed(q);
-    const set = info.valid;
-    const norm = toKey(val);
-
-    // Block reusing same entity in duplicate clusters
-    let entity=null;
-    if(info && info.rows && info.rows.length){
-      for(const r of info.rows){
-        const ek=entityKeyForRow(r,q.expect);
-        const aset=answerSetForRow(r,q.expect);
-        if(aset.has(norm)){ entity=ek; break; }
-      }
-      if(entity && info.used && info.used.has(entity)){
-        feedback.textContent='Already used that answer for this set — try its twin.'; feedback.className='feedback bad';
-        streak=0; updateCounters(); return;
-      }
-    }
-
+  function submitAnswer(val){ const q=QUEUE[qIndex]; if(!q) return; const info = buildUnionValidExcludingUsed(q); const set = info.valid; const norm = toKey(val);
+    let entity=null; if(info && info.rows && info.rows.length){ for(const r of info.rows){ const ek=entityKeyForRow(r,q.expect); const aset=answerSetForRow(r,q.expect); if(aset.has(norm)){ entity=ek; break; } } if(entity && info.used && info.used.has(entity)){ feedback.textContent='Already used that answer for this set — try its twin.'; feedback.className='feedback bad'; streak=0; updateCounters(); return; } }
     if(set.has(norm)){
       correct++; streak++; bestStreak=Math.max(bestStreak, streak);
       feedback.textContent='Correct.'; feedback.className='feedback ok';
-      consumeEntityForCluster(q, info, norm);
-      updateRibbonPills();
-      nextQuestion();
+      consumeEntityForCluster(q, info, norm); nextQuestion();
     } else {
-      feedback.textContent='Not quite.'; feedback.className='feedback bad';
-      streak=0; updateCounters();
+      feedback.textContent='Not quite.'; feedback.className='feedback bad'; streak=0; updateCounters();
     }
   }
 
@@ -263,24 +173,11 @@
   form.addEventListener('submit', e=>{ e.preventDefault(); if(!finished) submitAnswer(input.value); });
   revealBtn.addEventListener('click', ()=>{ if(!finished) revealCurrent(); });
   newGameBtn.addEventListener('click', ()=> startGame(MODE));
-  modeButtons.forEach(btn=> btn.addEventListener('click', ()=>{
-    modeButtons.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active'); MODE=btn.dataset.mode; startGame(MODE);
-  }));
-  const clearLbBtn = document.getElementById('clearLeaderboard');
-  if(clearLbBtn) clearLbBtn.addEventListener('click', ()=>{ localStorage.removeItem(lbKey(MODE)); renderLB(MODE); });
-  document.addEventListener('keydown', e=>{
-    const k=e.key?e.key.toLowerCase():''; if(k==='r' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); if(!finished) revealCurrent(); }
-  });
+  modeButtons.forEach(btn=> btn.addEventListener('click', ()=>{ modeButtons.forEach(b=>b.classList.remove('active')); btn.classList.add('active'); MODE=btn.dataset.mode; startGame(MODE); }));
+  clearLbBtn.addEventListener('click', ()=>{ localStorage.removeItem(lbKey(MODE)); renderLB(MODE); });
+  document.addEventListener('keydown', e=>{ const k=e.key?e.key.toLowerCase():''; if(k==='r' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); if(!finished) revealCurrent(); }});
 
-  function startGame(mode){
-    QUEUE=makeQueue(mode, DATA);
-    resetCounters(QUEUE.length);
-    renderLB(mode);
-    renderQuestion();
-    startTimer();
-  }
-
+  function startGame(mode){ QUEUE=makeQueue(mode, DATA); resetCounters(QUEUE.length); renderLB(mode); renderQuestion(); startTimer(); }
   // Start with default or query param
   const m = new URLSearchParams(location.search).get('mode'); if(m && MODES.includes(m)) MODE=m;
   const btn = document.querySelector(`.modes button[data-mode="${MODE}"]`); if(btn){ btn.classList.add('active'); }
