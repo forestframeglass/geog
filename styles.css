@@ -58,3 +58,27 @@ header.topbar .topbar-right{
   justify-self: end !important;
 }
 ``
+/* --- Link-as-button styling to match ribbon buttons --- */
+.btn-link {
+  display: inline-block;
+  background: #1f2937;
+  color: var(--ink);
+  border: 1px solid #374151;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;       /* remove underline */
+  line-height: 1;              /* visually match button height */
+}
+
+.btn-link:hover {
+  border-color: var(--accent);
+  color: #fff;                 /* match .modes button:hover/active contrast */
+}
+
+/* Keyboard focus visible */
+.btn-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  text-decoration: none;
+}
