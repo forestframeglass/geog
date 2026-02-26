@@ -94,3 +94,67 @@ header.topbar .topbar-right{
 
 /* make sure visited state doesn't change the button color */
 .btn-link:visited { color: var(--ink); }
+/* ---------- Centred info ribbon & pills ---------- */
+.hud--ribbon {
+  background: var(--card);
+  border: 1px solid #1f2937;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+/* The whole row, centred */
+.ribbon{
+  --gap: 10px;
+  --gap-lg: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;   /* centre everything */
+  gap: var(--gap);
+}
+
+/* Slightly bigger gaps before/after the pill group */
+.ribbon-gap{ width: var(--gap); height: 1px; }
+.ribbon-gap--large{ width: var(--gap-lg); }
+
+.stopwatch{
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Pill look (button-styled info chips) */
+.pill{
+  display: inline-block;
+  background: #1f2937;
+  color: var(--ink);
+  border: 1px solid #374151;
+  padding: 6px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: default;           /* not interactive */
+}
+.pill:hover{ border-color: #374151; } /* no hover effect for info pills */
+
+/* Keep New Game visually aligned with the pills */
+#newGame{
+  background:#1f2937;
+  color: var(--ink);
+  border:1px solid #374151;
+  padding: 6px 10px;
+  border-radius:6px;
+}
+#newGame:hover{ border-color: var(--accent); color:#fff; }
+
+/* Mobile tweaks: keep it tight but readable */
+@media (max-width: 480px){
+  .ribbon{
+    --gap: 8px;
+    --gap-lg: 12px;
+  }
+  .pill, #newGame{
+    padding: 8px 10px;
+    min-height: 36px;
+  }
+}
