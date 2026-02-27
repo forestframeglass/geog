@@ -179,3 +179,55 @@ img, svg, video, canvas {
     padding-right: 0;
   }
 }
+/* Stack the form vertically: input on top, buttons underneath */
+#answerForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* center the children horizontally */
+  gap: 10px;                 /* space between input and the buttons row */
+}
+
+/* Center the two buttons and add spacing between them */
+#answerForm .buttons{
+  display: flex;
+  justify-content: center;
+  gap: 10px;                 /* space between Submit and Reveal */
+  width: 100%;
+}
+
+/* Make the buttons look like the ribbon pills */
+#answerForm .buttons button{
+  background: #1f2937;
+  color: var(--ink);
+  border: 1px solid #374151;
+  padding: 8px 12px;
+  border-radius: 999px;      /* pill shape */
+  cursor: pointer;
+  line-height: 1;
+  min-height: 36px;
+}
+#answerForm .buttons button:hover{
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Ensure the input doesn’t force a side scroll */
+#answerInput{
+  width: 100%;
+  max-width: 680px;          /* keeps it tidy on desktop */
+}
+
+/* On very small phones, keep everything compact and centered */
+@media (max-width: 480px){
+  #answerForm { gap: 12px; }
+  #answerForm .buttons button{ padding: 10px 12px; min-height: 40px; }
+}
+@media (max-width: 360px){
+  #answerForm .buttons{
+    flex-direction: column;     /* stack Submit above Reveal */
+    align-items: center;
+  }
+  #answerForm .buttons button{
+    width: min(360px, 90%);
+  }
+}
