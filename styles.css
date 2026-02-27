@@ -137,3 +137,45 @@ footer{text-align:center}
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important; transition:none !important;}
 }
+/* Prevent any horizontal scrolling (page-wide) */
+html, body {
+  overflow-x: hidden;
+}
+
+/* On some mobile browsers, this avoids “elastic” side scroll */
+body {
+  overscroll-behavior-x: none;
+}
+
+/* If any child spills, clip it rather than extending the layout */
+main {
+  overflow-x: clip;   /* better than hidden; keeps compositing simple */
+  max-width: 100vw;   /* never exceed the viewport width */
+}
+/* Ensure top-level blocks don't push wider than the viewport */
+header, footer, .landing, .hud, .question, .panels, .panel, .grid, .ribbon {
+  max-width: 100%;
+}
+
+/* Grids and tables sometimes push width; keep them honest */
+.grid, .panels, .reveal-table, .board-table {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Images and flag thumbnails are already constrained — reinforce globally */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+/* Allow long tokens to wrap within pills and table cells */
+.pill, .reveal-table td, .board-table td, #prompt {
+  word-break: break-word;  /* break long tokens */
+  overflow-wrap: anywhere; /* modern wrap hint */
+}
+@media (max-width: 380px){
+  .buttons {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
