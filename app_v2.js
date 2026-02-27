@@ -1,4 +1,3 @@
-
 // Geo Trainer V2 — gameplay
 // Notes: case-insensitive only; no extra aliasing beyond provided Alt columns.
 
@@ -133,9 +132,9 @@ function updateRibbonPills(){
   }
 
   // UI helpers
-  function resetCounters(total){ qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false; for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k]; qTotalEl.textContent=total; updateCounters(); revealedBody.innerHTML=''; feedback.textContent=''; feedback.className='feedback';updateRibbonPills() }
-  function updateCounters(){ qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); correctEl.textContent=correct; streakEl.textContent=streak; bestStreakEl.textContent=bestStreak; revealsEl.textContent=reveals;updateRibbonPills(); }
-  function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(()=>{ timerEl.textContent=fmtMS(performance.now()-startTs); }, 100); }
+  function resetCounters(total){ qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false; for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k]; if(qTotalEl) qTotalEl.textContent=total; updateCounters(); if(revealedBody) revealedBody.innerHTML=''; feedback.textContent=''; feedback.className='feedback'; updateRibbonPills(); }
+  function updateCounters(){ if(qIndexEl) qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); if(remainingEl) remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); if(correctEl) correctEl.textContent=correct; if(streakEl) streakEl.textContent=streak; if(bestStreakEl) bestStreakEl.textContent=bestStreak; if(revealsEl) revealsEl.textContent=reveals; updateRibbonPills(); }
+  function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(()=>{ if(timerEl) timerEl.textContent=fmtMS(performance.now()-startTs); }, 100); }
   function stopTimer(){ clearInterval(tickHandle); tickHandle=null; }
 
   function renderQuestion(){ const q=QUEUE[qIndex]; if(!q) return; qShownTs=performance.now();
@@ -166,16 +165,16 @@ function updateRibbonPills(){
     revealedBody.prepend(row);
   }
 
-  function revealCurrent(){ const q=QUEUE[qIndex]; if(!q) return; const corr=q.expect==='country'?[...q.countrySet][0]:[...q.capitalSet][0]; const disp=q.label||corr; reveals++; const info=buildUnionValidExcludingUsed(q); consumeEntityForCluster(q, info, toKey(q.label)); pushRevealedEntry(q, input.value, disp); revealsEl.textContent=reveals; nextQuestion(); }
+  function revealCurrent(){ const q=QUEUE[qIndex]; if(!q) return; const corr=q.expect==='country'?[...q.countrySet][0]:[...q.capitalSet][0]; const disp=q.label||corr; reveals++; const info=buildUnionValidExcludingUsed(q); consumeEntityForCluster(q, info, toKey(q.label)); pushRevealedEntry(q, input.value, disp); if(revealsEl) revealsEl.textContent=reveals; updateRibbonPills(); nextQuestion(); }
 
-  function nextQuestion(){ if(finished) return; qIndex++; if(qIndex>=QUEUE.length){ finished=true; stopTimer(); const elapsed=performance.now()-startTs; addLB(MODE, elapsed, {reveals, bestStreak}); feedback.textContent=`Done — ${fmtMS(elapsed)}.`; feedback.className='feedback ok'; input.disabled=true; revealBtn.disabled=true; return; } renderQuestion(); }
+  function nextQuestion(){ if(finished) return; qIndex++; if(qIndex>=QUEUE.length){ finished=true; stopTimer(); const elapsed=performance.now()-startTs; addLB(MODE, elapsed, {reveals, bestStreak}); feedback.textContent=`Done — ${fmtMS(elapsed)}.`; feedback.className='feedback ok'; input.disabled=true; revealBtn.disabled=true; updateRibbonPills(); return; } renderQuestion(); }
 
   function submitAnswer(val){ const q=QUEUE[qIndex]; if(!q) return; const info = buildUnionValidExcludingUsed(q); const set = info.valid; const norm = toKey(val);
     let entity=null; if(info && info.rows && info.rows.length){ for(const r of info.rows){ const ek=entityKeyForRow(r,q.expect); const aset=answerSetForRow(r,q.expect); if(aset.has(norm)){ entity=ek; break; } } if(entity && info.used && info.used.has(entity)){ feedback.textContent='Already used that answer for this set — try its twin.'; feedback.className='feedback bad'; streak=0; updateCounters(); return; } }
     if(set.has(norm)){
       correct++; streak++; bestStreak=Math.max(bestStreak, streak);
       feedback.textContent='Correct.'; feedback.className='feedback ok';
-      consumeEntityForCluster(q, info, norm); nextQuestion();
+      consumeEntityForCluster(q, info, norm); updateRibbonPills(); nextQuestion();
     } else {
       feedback.textContent='Not quite.'; feedback.className='feedback bad'; streak=0; updateCounters();
     }
@@ -186,7 +185,7 @@ function updateRibbonPills(){
   revealBtn.addEventListener('click', ()=>{ if(!finished) revealCurrent(); });
   newGameBtn.addEventListener('click', ()=> startGame(MODE));
   modeButtons.forEach(btn=> btn.addEventListener('click', ()=>{ modeButtons.forEach(b=>b.classList.remove('active')); btn.classList.add('active'); MODE=btn.dataset.mode; startGame(MODE); }));
-  clearLbBtn.addEventListener('click', ()=>{ localStorage.removeItem(lbKey(MODE)); renderLB(MODE); });
+  if(clearLbBtn) clearLbBtn.addEventListener('click', ()=>{ localStorage.removeItem(lbKey(MODE)); renderLB(MODE); });
   document.addEventListener('keydown', e=>{ const k=e.key?e.key.toLowerCase():''; if(k==='r' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); if(!finished) revealCurrent(); }});
 
   function startGame(mode){ QUEUE=makeQueue(mode, DATA); resetCounters(QUEUE.length); renderLB(mode); renderQuestion(); startTimer(); }

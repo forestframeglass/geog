@@ -1,79 +1,80 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Geography Trainer</title>
-  <link rel="stylesheet" href="styles.css"/>
+ <meta charset="utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>Geography Trainer</title>
+ <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <header>
-    <h1>Geography Trainer</h1>
-    <nav class="modes">
-      <button data-mode="flag-to-country" class="active">Flag → Country</button>
-      <button data-mode="capital-to-country">Capital → Country</button>
-      <button data-mode="country-to-capital">Country → Capital</button>
-      <button data-mode="flag-to-capital">Flag → Capital</button>
-      <a style="margin-left:8px;color:white" href="index.html">Home</a>
-    </nav>
-  </header>
-  <main>
-    
-    <section class="hud">
-      <div class="timer">⏱ <span id="timer">00:00.0</span></div>
-      <div class="counts">
-        <span>Q: <span id="qIndex">0</span>/<span id="qTotal">0</span></span>
-        <span>Remaining: <span id="remaining">0</span></span>
-        <span>Correct: <span id="correct">0</span></span>
-        <span>Streak: <span id="streak">0</span></span>
-        <span>Best Streak: <span id="bestStreak">0</span></span>
-        <span>Reveals: <span id="reveals">0</span></span>
-      </div>
-      <div class="controls">
-        <button id="newGame">New Game</button>
-      </div>
-    </section>
-
-
-    <section class="question">
-      <div id="prompt"></div>
-      <div id="dupBadge" class="badge hidden">Multiple answers available, don't reuse the same one!</div>
-      <div id="flagWrap" class="flag hidden">
-        <img id="flagImg" alt="Flag" />
-      </div>
-      <form id="answerForm" autocomplete="off">
-        <input id="answerInput" type="text" placeholder="Type your answer and press Enter" />
-        <div class="buttons">
-          <button type="submit" id="submitBtn">Submit</button>
-          <button type="button" id="revealBtn">Reveal</button>
-        </div>
-      </form>
-      <div id="feedback" class="feedback"></div>
-    </section>
-
-    <section class="panels">
-      <div class="panel">
-        <h2>Revealed Answers</h2>
-        <table class="reveal-table">
-          <thead><tr><th>Question</th><th>Answer</th><th>Player Guess</th></tr></thead>
-          <tbody id="revealedBody"></tbody>
-        </table>
-      </div>
-      <div class="panel">
-        <h2>Leaderboard</h2>
-        <table class="board-table">
-          <thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead>
-          <tbody id="leaderboardBody"></tbody>
-        </table>
-        <button id="clearLeaderboard">Clear Leaderboard</button>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <small class="centerfoot">Ctrl+R to Reveal</small>
-  </footer>
-  <script src="data_v2.js"></script>
-  <script src="app_v2.js"></script>
+ <header>
+ <h1>Geography Trainer</h1>
+ <nav class="modes">
+ <button data-mode="flag-to-country" class="active">Flag → Country</button>
+ <button data-mode="capital-to-country">Capital → Country</button>
+ <button data-mode="country-to-capital">Country → Capital</button>
+ <button data-mode="flag-to-capital">Flag → Capital</button>
+ <a style="margin-left:8px;color:white" href="index.html">Home</a>
+ </nav>
+ </header>
+ <main>
+ <section class="hud hud--ribbon">
+  <div class="ribbon" role="group" aria-label="Game info ribbon">
+    <div class="stopwatch">⏱ <span id="timer">00:00.0</span></div>
+    <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
+    <span class="pill" id="hudProgress" aria-label="Progress">1/0 (0 left)</span>
+    <span class="pill" id="hudCorrect"  aria-label="Correct answers">Correct: 0</span>
+    <span class="pill" id="hudStreak"   aria-label="Streak and best streak">Streak: 0 (0)</span>
+    <span class="pill" id="hudReveals"  aria-label="Number of reveals">Reveals: 0</span>
+    <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
+    <button id="newGame">New Game</button>
+  </div>
+  <div class="counts hidden" aria-hidden="true" style="display:none">
+    <span>Q: <span id="qIndex">0</span>/<span id="qTotal">0</span></span>
+    <span>Remaining: <span id="remaining">0</span></span>
+    <span>Correct: <span id="correct">0</span></span>
+    <span>Streak: <span id="streak">0</span></span>
+    <span>Best Streak: <span id="bestStreak">0</span></span>
+    <span>Reveals: <span id="reveals">0</span></span>
+  </div>
+</section>
+ <section class="question">
+ <div id="prompt"></div>
+ <div id="dupBadge" class="badge hidden">Multiple answers available, don't reuse the same one!</div>
+ <div id="flagWrap" class="flag hidden">
+ <img id="flagImg" alt="Flag" />
+ </div>
+ <form id="answerForm" autocomplete="off">
+ <input id="answerInput" type="text" placeholder="Type your answer and press Enter" />
+ <div class="buttons">
+ <button type="submit" id="submitBtn">Submit</button>
+ <button type="button" id="revealBtn">Reveal</button>
+ </div>
+ </form>
+ <div id="feedback" class="feedback"></div>
+ </section>
+ <section class="panels">
+ <div class="panel">
+ <h2>Revealed Answers</h2>
+ <table class="reveal-table">
+ <thead><tr><th>Question</th><th>Answer</th><th>Player Guess</th></tr></thead>
+ <tbody id="revealedBody"></tbody>
+ </table>
+ </div>
+ <div class="panel">
+ <h2>Leaderboard</h2>
+ <table class="board-table">
+ <thead><tr><th>Rank</th><th>Time</th><th>Date</th><th>Reveals</th><th>Best Streak</th></tr></thead>
+ <tbody id="leaderboardBody"></tbody>
+ </table>
+ <button id="clearLeaderboard">Clear Leaderboard</button>
+ </div>
+ </section>
+ </main>
+ <footer>
+ <small class="centerfoot">Ctrl+R to Reveal</small>
+ </footer>
+ <script src="data_v2.js"></script>
+ <script src="app_v2.js"></script>
 </body>
 </html>
