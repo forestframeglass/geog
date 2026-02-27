@@ -137,3 +137,47 @@ footer{text-align:center}
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important; transition:none !important;}
 }
+/* ---------- Centred info ribbon & pills (quiz HUD) ---------- */
+.hud--ribbon{
+  background:var(--card); border:1px solid #1f2937;
+  padding:10px 12px; border-radius:10px;
+}
+.ribbon{
+  --gap:10px; --gap-lg:16px;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:var(--gap); row-gap:var(--gap);
+}
+.ribbon-gap{ width:var(--gap); height:1px; }
+.ribbon-gap--large{ width:var(--gap-lg); }
+
+.stopwatch{ font-weight:600; white-space:nowrap; }
+
+/* Presentational “game pills” */
+.pill{
+  display:inline-block; background:#1f2937; color:var(--ink);
+  border:1px solid #374151; padding:6px 10px; border-radius:999px;
+  text-decoration:none; line-height:1; white-space:nowrap; cursor:default;
+}
+.pill:hover{ border-color:#374151; } /* no hover change */
+
+/* Align New Game with pill look */
+#newGame{
+  background:#1f2937;color:var(--ink);border:1px solid #374151;
+  padding:6px 10px;border-radius:6px;cursor:pointer
+}
+#newGame:hover{ border-color:var(--accent); color:#fff; }
+
+/* Small phones: break into lines:
+   line 1 = stopwatch
+   line 2 = pills (wrap as needed)
+   line 3 = New Game */
+@media (max-width: 480px){
+  .ribbon{ --gap:8px; --gap-lg:12px; }
+  .pill, #newGame{ padding:8px 10px; min-height:36px; }
+}
+@media (max-width: 420px){
+  .ribbon-gap--large{ display:none; }
+  .stopwatch{ flex:1 1 100%; display:flex; justify-content:center; }
+  .pill{ flex:0 1 auto; }
+  #newGame{ flex:1 1 100%; display:flex; justify-content:center; align-items:center; }
+}
