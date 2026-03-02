@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mistakes – Geography Trainer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .mistakes-wrap{max-width:980px;margin:16px auto;padding:0 16px}
+    .note{color:var(--muted);margin:8px 0 16px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mistakes (last game)</h1>
+    <nav class="modes">
+      <a class="btn-link" href="index.html">Home</a>
+      <a class="btn-link" href="quiz.html">Back to Game</a>
+    </nav>
+  </header>
+  <main class="mistakes-wrap">
+    <p class="note">This page lists the incorrect or misspelled answers you typed during your <em>most recent</em> run. It reads from your device only and is not shared.</p>
+    <div class="panel">
+      <h2>Wrong / Misspelled Answers</h2>
+      <table class="reveal-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Question</th>
+            <th>Correct Answer</th>
+            <th>Your Entry</th>
+            <th>When</th>
+          </tr>
+        </thead>
+        <tbody id="mistakesBody"></tbody>
+      </table>
+    </div>
+  </main>
+  <footer><small class="centerfoot"></small></footer>
+  <script>
+    function fmtDateTime(ts){ try{const d=new Date(ts); return d.toISOString().replace('T',' ').slice(0,19);}catch{return '';} }
+    (function(){
+      const body = document.getElementById('mistakesBody');
+      body.innerHTML = '';
+      let data = null;
+      try{ data = JSON.parse(localStorage.getItem('gt.v2.mistakes.latest')); }catch(_){ data=null; }
+      if(!data || !data.items || !data.items.length){
+        const tr=document.createElement('tr');
+        const td=document.createElement('td'); td.colSpan=5; td.textContent='No mistakes recorded for the last run.'; tr.appendChild(td); body.appendChild(tr); return;
+      }
+      for(const it of data.items){
+        const tr=document.createElement('tr');
+        const tdMode=document.createElement('td'); tdMode.textContent = data.mode || '';
+        const tdQ=document.createElement('td');
+        if(it.flag){ const img=document.createElement('img'); img.src=it.flag; img.alt=''; img.setAttribute('aria-hidden','true'); img.setAttribute('role','presentation'); tdQ.appendChild(img); }
+        else { tdQ.textContent = it.prompt || ''; }
+        const tdA=document.createElement('td'); tdA.textContent = it.correct || '';
+        const tdG=document.createElement('td'); tdG.textContent = it.guess || '';
+        const tdW=document.createElement('td'); tdW.textContent = fmtDateTime(it.when);
+        tr.appendChild(tdMode); tr.appendChild(tdQ); tr.appendChild(tdA); tr.appendChild(tdG); tr.appendChild(tdW);
+        body.appendChild(tr);
+      }
+    })();
+  </script>
+</body>
+</html>

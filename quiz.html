@@ -15,6 +15,7 @@
  <button data-mode="country-to-capital">Country → Capital</button>
  <button data-mode="flag-to-capital">Flag → Capital</button>
  <a style="margin-left:8px;color:white" href="index.html">Home</a>
+  <a class="btn-link" href="mistakes.html">Mistakes</a>
  </nav>
  </header>
  <main>
@@ -42,7 +43,7 @@
  <div id="prompt"></div>
  <div id="dupBadge" class="badge hidden">Multiple answers available, don't reuse the same one!</div>
  <div id="flagWrap" class="flag hidden">
- <img id="flagImg" alt="Flag" />
+ <img id="flagImg" alt="" role="presentation" aria-hidden="true" />
  </div>
  <form id="answerForm" autocomplete="off">
  <input id="answerInput" type="text" placeholder="Type your answer and press Enter" />
@@ -52,7 +53,7 @@
  <button type="button" id="revealBtn">Reveal</button>
  </div></p>
  </form>
- <div id="feedback" class="feedback"></div>
+ <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true"></div>
  </section>
  <section class="panels">
  <div class="panel">
