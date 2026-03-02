@@ -1,0 +1,91 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Training – Geography Trainer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .train-wrap{max-width:980px;margin:16px auto;padding:0 16px}
+    .controls{display:flex;gap:8px;align-items:center;margin:8px 0 12px}
+    .controls input{flex:1;padding:8px 10px;border-radius:6px;border:1px solid #374151;background:#0b1220;color:var(--ink)}
+    .flagcol img{max-height:36px;border:1px solid #374151;border-radius:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Training</h1>
+    <nav class="modes">
+      <a class="btn-link" href="index.html">Home</a>
+      <a class="btn-link" href="quiz.html">Start a Game</a>
+    </nav>
+  </header>
+  <main class="train-wrap">
+    <p class="muted">Browse the full list (Flag, Country, Capital). Use the filter to narrow by text.</p>
+    <div class="controls">
+      <input id="filterInput" type="text" placeholder="Filter by country, capital, or ISO…" aria-label="Filter table" />
+      <button id="clearFilter" class="btn-link" type="button">Clear</button>
+    </div>
+    <div class="panel">
+      <h2>Study Table</h2>
+      <table class="reveal-table" aria-label="Training table">
+        <thead>
+          <tr>
+            <th>Flag</th>
+            <th>Country</th>
+            <th>Capital</th>
+          </tr>
+        </thead>
+        <tbody id="trainBody"></tbody>
+      </table>
+    </div>
+  </main>
+  <footer><small class="centerfoot"></small></footer>
+  <script src="data_v2.js"></script>
+  <script>
+    (function(){
+      const body = document.getElementById('trainBody');
+      const input = document.getElementById('filterInput');
+      const clearBtn = document.getElementById('clearFilter');
+      const rows = Array.isArray(window.DATA) ? window.DATA.slice() : [];
+
+      function norm(s){ return (s||'').toString().toLowerCase(); }
+      function matches(r, q){
+        if(!q) return true;
+        const t = q.trim().toLowerCase();
+        return norm(r.iso).includes(t)
+            || norm(r.country).includes(t)
+            || (Array.isArray(r.countryAlt) && r.countryAlt.some(a=>norm(a).includes(t)))
+            || norm(r.capital).includes(t)
+            || (Array.isArray(r.capitalAlt) && r.capitalAlt.some(a=>norm(a).includes(t)));
+      }
+
+      function render(list){
+        body.innerHTML='';
+        for(const r of list){
+          const tr=document.createElement('tr');
+          const tdF=document.createElement('td'); tdF.className='flagcol';
+          if(r.flag){ const img=document.createElement('img'); img.src=r.flag; img.alt=''; img.setAttribute('role','presentation'); img.setAttribute('aria-hidden','true'); tdF.appendChild(img); }
+          const tdC=document.createElement('td'); tdC.textContent=r.country||'';
+          const tdK=document.createElement('td'); tdK.textContent=r.capital||'';
+          tr.appendChild(tdF); tr.appendChild(tdC); tr.appendChild(tdK);
+          body.appendChild(tr);
+        }
+        if(!list.length){
+          const tr=document.createElement('tr'); const td=document.createElement('td'); td.colSpan=3; td.textContent='No rows match your filter.'; tr.appendChild(td); body.appendChild(tr);
+        }
+      }
+
+      function apply(){
+        const q=input.value||''; render(rows.filter(r=>matches(r,q)));
+      }
+
+      input.addEventListener('input', apply);
+      clearBtn.addEventListener('click', ()=>{ input.value=''; apply(); input.focus(); });
+
+      render(rows);
+    })();
+  </script>
+</body>
+</html>
