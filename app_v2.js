@@ -52,6 +52,7 @@ const hudReveals  = document.getElementById('hudReveals');
   let QUEUE = [];
   let qIndex=0, correct=0, streak=0, bestStreak=0, reveals=0; let revealed=[];
   let startTs=0, tickHandle=null, finished=false; let qShownTs=0;
+  let penaltyMs=0; let wrongLog=[]; let runId=null;
 
   const USED_BY_CLUSTER = {}; // anti-reuse per duplicate group
 
@@ -74,7 +75,8 @@ function updateRibbonPills(){
   function saveLB(mode,list){ localStorage.setItem(lbKey(mode), JSON.stringify(list)); }
   function addLB(mode, ms, stats){ const item={ ms, when: Date.now(), stats}; const list=loadLB(mode).concat(item).sort((a,b)=>a.ms-b.ms).slice(0,10); saveLB(mode,list); renderLB(mode,item.when); }
   function renderLB(mode, latestWhen){ const list=loadLB(mode); if(leaderboardBody) leaderboardBody.innerHTML=''; list.forEach((it,idx)=>{ const tr=document.createElement('tr'); if(latestWhen && it.when===latestWhen) tr.classList.add('latest');
-    const tds=[idx+1, fmtMS(it.ms), new Date(it.when).toISOString().slice(0,10), it.stats.reveals, it.stats.bestStreak||0].map(v=>{const td=document.createElement('td'); td.textContent=String(v); return td;});
+    const timeStr = fmtMS(it.ms) + ((it.stats && it.stats.reveals>0)? "*" : "");
+    const tds=[idx+1, timeStr, new Date(it.when).toISOString().slice(0,10), it.stats.reveals, it.stats.bestStreak||0].map(v=>{const td=document.createElement('td'); td.textContent=String(v); return td;});
     tds.forEach(td=>tr.appendChild(td)); leaderboardBody.appendChild(tr); }); }
 
   function clusterKey(q){
@@ -133,8 +135,8 @@ function updateRibbonPills(){
 
   // UI helpers
   function resetCounters(total){ qIndex=0; correct=0; streak=0; reveals=0; bestStreak=0; revealed=[]; finished=false; for(const k in USED_BY_CLUSTER) delete USED_BY_CLUSTER[k]; if(qTotalEl) qTotalEl.textContent=total; updateCounters(); if(revealedBody) revealedBody.innerHTML=''; feedback.textContent=''; feedback.className='feedback'; updateRibbonPills(); }
-  function updateCounters(){ if(qIndexEl) qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); if(remainingEl) remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); if(correctEl) correctEl.textContent=correct; if(streakEl) streakEl.textContent=streak; if(bestStreakEl) bestStreakEl.textContent=bestStreak; if(revealsEl) revealsEl.textContent=reveals; updateRibbonPills(); }
-  function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(()=>{ if(timerEl) timerEl.textContent=fmtMS(performance.now()-startTs); }, 100); }
+  function updateCounters(){ if(qIndexEl) qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); if(remainingEl) remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); if(correctEl) correctEl.textContent=correct; if(streakEl) streakEl.textContent=streak; if(bestStreakEl) bestStreakEl.textContent=bestStreak; if(revealsEl) revealsEl.textContent=reveals; if(penaltyChipEl){ penaltyChipEl.classList.add('show'); setTimeout(()=> penaltyChipEl.classList.remove('show'), 1000); } updateRibbonPills(); }
+  function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(()=>{ if(timerEl) timerEl.textContent=fmtMS(performance.now()-startTs + penaltyMs); }, 100); }
   function stopTimer(){ clearInterval(tickHandle); tickHandle=null; }
 
   function renderQuestion(){ const q=QUEUE[qIndex]; if(!q) return; qShownTs=performance.now();
@@ -165,7 +167,7 @@ function updateRibbonPills(){
     revealedBody.prepend(row);
   }
 
-  function revealCurrent(){ const q=QUEUE[qIndex]; if(!q) return; const corr=q.expect==='country'?[...q.countrySet][0]:[...q.capitalSet][0]; const disp=q.label||corr; reveals++; const info=buildUnionValidExcludingUsed(q); consumeEntityForCluster(q, info, toKey(q.label)); pushRevealedEntry(q, input.value, disp); if(revealsEl) revealsEl.textContent=reveals; updateRibbonPills(); nextQuestion(); }
+  function revealCurrent(){ const q=QUEUE[qIndex]; if(!q) return; const corr=q.expect==='country'?[...q.countrySet][0]:[...q.capitalSet][0]; const disp=q.label||corr; reveals++; penaltyMs += 5000; const info=buildUnionValidExcludingUsed(q); consumeEntityForCluster(q, info, toKey(q.label)); pushRevealedEntry(q, input.value, disp); if(revealsEl) revealsEl.textContent=reveals; if(penaltyChipEl){ penaltyChipEl.classList.add('show'); setTimeout(()=> penaltyChipEl.classList.remove('show'), 1000); } updateRibbonPills(); nextQuestion(); }
 
   function nextQuestion(){ if(finished) return; qIndex++; if(qIndex>=QUEUE.length){ finished=true; stopTimer(); const elapsed=performance.now()-startTs; addLB(MODE, elapsed, {reveals, bestStreak}); feedback.textContent=`Done — ${fmtMS(elapsed)}.`; feedback.className='feedback ok'; input.disabled=true; revealBtn.disabled=true; updateRibbonPills(); return; } renderQuestion(); }
 
@@ -176,10 +178,22 @@ function updateRibbonPills(){
       feedback.textContent='Correct.'; feedback.className='feedback ok';
       consumeEntityForCluster(q, info, norm); updateRibbonPills(); nextQuestion();
     } else {
-      feedback.textContent='Not quite.'; feedback.className='feedback bad'; streak=0; updateCounters();
+      wrongLog.push({ type:q.type, prompt:q.prompt||null, flag:q.flag||null, expect:q.expect, correct:q.label||'', guess:val||'', when: Date.now() }); saveMistakesDraft(MODE); if(hudMistakes) hudMistakes.textContent = `Mistakes (${wrongLog.length})`; feedback.textContent='Not quite.'; feedback.className='feedback bad'; streak=0; updateCounters();
     }
   }
 
+  function saveMistakes(mode){
+    try{ const payload = { mode, when: Date.now(), runId, items: wrongLog };
+      localStorage.setItem('gt.v2.mistakes.latest', JSON.stringify(payload));
+      localStorage.setItem('gt.v2.mistakes.'+mode+'.latest', JSON.stringify(payload));
+    }catch(_){}
+  }
+  function saveMistakesDraft(mode){
+    try{ const payload = { mode, when: Date.now(), runId, items: wrongLog };
+      localStorage.setItem('gt.v2.mistakes.draft', JSON.stringify(payload));
+      localStorage.setItem('gt.v2.mistakes.'+mode+'.draft', JSON.stringify(payload));
+    }catch(_){}
+  }
   // Events
   form.addEventListener('submit', e=>{ e.preventDefault(); if(!finished) submitAnswer(input.value); });
   revealBtn.addEventListener('click', ()=>{ if(!finished) revealCurrent(); });
@@ -188,7 +202,7 @@ function updateRibbonPills(){
   if(clearLbBtn) clearLbBtn.addEventListener('click', ()=>{ localStorage.removeItem(lbKey(MODE)); renderLB(MODE); });
   document.addEventListener('keydown', e=>{ const k=e.key?e.key.toLowerCase():''; if(k==='r' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); if(!finished) revealCurrent(); }});
 
-  function startGame(mode){ QUEUE=makeQueue(mode, DATA); resetCounters(QUEUE.length); if(hudMistakes) hudMistakes.textContent = 'Mistakes (0)'; renderLB(mode); renderQuestion(); startTimer(); }
+  function startGame(mode){ QUEUE=makeQueue(mode, DATA); penaltyMs=0; wrongLog=[]; runId=Date.now(); try{localStorage.removeItem('gt.v2.mistakes.draft');}catch(_){ } if(hudMistakes) hudMistakes.textContent='Mistakes (0)'; resetCounters(QUEUE.length); renderLB(mode); renderQuestion(); startTimer(); }
   // Start with default or query param
   const m = new URLSearchParams(location.search).get('mode'); if(m && MODES.includes(m)) MODE=m;
   const btn = document.querySelector(`.modes button[data-mode="${MODE}"]`); if(btn){ btn.classList.add('active'); }

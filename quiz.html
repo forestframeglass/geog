@@ -20,7 +20,7 @@
  <main>
  <section class="hud hud--ribbon">
   <div class="ribbon" role="group" aria-label="Game info ribbon">
-    <div class="stopwatch">⏱ <span id="timer">00:00.0</span> <span id="penaltyChip" class="pill">+5s</span></div>
+    <div class="stopwatch">⏱ <span id="timer">00:00.0</span> <span id="penaltyChip" class="pill" style="display:none">+5s</span></div>
     <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
     <span class="pill" id="hudProgress" aria-label="Progress">1/0 (0 left)</span>
     <span class="pill" id="hudCorrect"  aria-label="Correct answers">Correct: 0</span>
@@ -69,7 +69,7 @@
  <tbody id="leaderboardBody"></tbody>
  </table>
  <button id="clearLeaderboard">Clear Leaderboard</button>
-      <div id="lbFootnote" class="muted" style="margin-top:6px">* includes penalties</div>
+      <div class="muted" id="lbFootnote" style="margin-top:6px">* includes penalties</div>
  </div>
  </section>
  </main>

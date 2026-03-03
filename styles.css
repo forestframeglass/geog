@@ -232,10 +232,8 @@ img, svg, video, canvas {
   }
 }
 
-/* Center prompt, feedback, and duplicate warning */
-#prompt, .feedback, #dupBadge { text-align: center; }
-
-/* Stopwatch penalty chip */
-#penaltyChip { display:none; margin-left:6px; }
-#penaltyChip.show { display:inline-block; }
+/* Center prompt, feedback text, and duplicate warning */
+#prompt, .feedback, #dupBadge { text-align:center; }
+/* Penalty chip visibility */
+#penaltyChip.show { display:inline-block !important; }
 

@@ -1,9 +1,9 @@
 
 /* geo-trainer V2 Service Worker */
-const VERSION='v2.0.1';
+const VERSION='v2.0.2';
 const CORE_CACHE=`core-${VERSION}`;
 const RUNTIME_SVG_CACHE=`svg-${VERSION}`;
-const CORE_ASSETS=['index.html','quiz.html','leaderboards.html','verify.html','manifest.webmanifest'];
+const CORE_ASSETS=['training.html','mistakes.html','index.html','quiz.html','leaderboards.html','verify.html','manifest.webmanifest'];
 
 self.addEventListener('install',e=>{e.waitUntil((async()=>{const c=await caches.open(CORE_CACHE); await c.addAll(CORE_ASSETS); await self.skipWaiting();})())});
 self.addEventListener('activate',e=>{e.waitUntil((async()=>{const keys=await caches.keys(); await Promise.all(keys.map(k=>{ if(!k.includes(VERSION)) return caches.delete(k); })); await self.clients.claim();})())});
