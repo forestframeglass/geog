@@ -13,16 +13,17 @@
 </head>
 <body>
   <header>
-    <h1>Mistakes (last game)</h1>
+    <h1>Mistakes</h1>
     <nav class="modes">
       <a class="btn-link" href="index.html">Home</a>
       <a class="btn-link" href="quiz.html">Back to Game</a>
     </nav>
   </header>
   <main class="mistakes-wrap">
-    <p class="note">This page lists the incorrect or misspelled answers you typed during your <em>most recent</em> run. It reads from your device only and is not shared.</p>
+    <p class="note">Shows the wrong or misspelled answers you typed. If you haven't finished a game, you'll see the <em>current run</em> only.</p>
     <div class="panel">
       <h2>Wrong / Misspelled Answers</h2>
+      <div id="draftNote" class="note" style="display:none">Showing your current run (finish a game to save as latest).</div>
       <table class="reveal-table">
         <thead>
           <tr>
@@ -44,11 +45,13 @@
       const body = document.getElementById('mistakesBody');
       body.innerHTML = '';
       let data = null;
-      try{ data = JSON.parse(localStorage.getItem('gt.v2.mistakes.latest')); }catch(_){ data=null; }
+      try{ data = JSON.parse(localStorage.getItem('gt.v2.mistakes.draft')); }catch(_){ data=null; }
+      if(!data){ try{ data = JSON.parse(localStorage.getItem('gt.v2.mistakes.latest')); }catch(_){ data=null; } }
       if(!data || !data.items || !data.items.length){
         const tr=document.createElement('tr');
-        const td=document.createElement('td'); td.colSpan=5; td.textContent='No mistakes recorded for the last run.'; tr.appendChild(td); body.appendChild(tr); return;
+        const td=document.createElement('td'); td.colSpan=5; td.textContent='No mistakes recorded yet.'; tr.appendChild(td); body.appendChild(tr); return;
       }
+      if(localStorage.getItem('gt.v2.mistakes.draft')){ document.getElementById('draftNote').style.display='block'; }
       for(const it of data.items){
         const tr=document.createElement('tr');
         const tdMode=document.createElement('td'); tdMode.textContent = data.mode || '';
