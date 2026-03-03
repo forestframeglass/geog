@@ -231,3 +231,11 @@ img, svg, video, canvas {
     width: min(360px, 90%);
   }
 }
+
+/* Center prompt, feedback, and duplicate warning */
+#prompt, .feedback, #dupBadge { text-align: center; }
+
+/* Stopwatch penalty chip */
+#penaltyChip { display:none; margin-left:6px; }
+#penaltyChip.show { display:inline-block; }
+

@@ -11,6 +11,7 @@
     .controls{display:flex;gap:8px;align-items:center;margin:8px 0 12px}
     .controls input{flex:1;padding:8px 10px;border-radius:6px;border:1px solid #374151;background:#0b1220;color:var(--ink)}
     .flagcol img{max-height:36px;border:1px solid #374151;border-radius:3px}
+    th[data-key]{cursor:pointer}
   </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
     </nav>
   </header>
   <main class="train-wrap">
-    <p class="muted">Browse the full list (Flag, Country, Capital). Use the filter to narrow by text.</p>
+    <p class="muted">Browse the full list (Flag, Country, Capital). Use the filter to narrow by text. Click headers to sort.</p>
     <div class="controls">
       <input id="filterInput" type="text" placeholder="Filter by country, capital, or ISO…" aria-label="Filter table" />
       <button id="clearFilter" class="btn-link" type="button">Clear</button>
@@ -32,9 +33,9 @@
       <table class="reveal-table" aria-label="Training table">
         <thead>
           <tr>
-            <th>Flag</th>
-            <th>Country</th>
-            <th>Capital</th>
+            <th data-key="flag">Flag</th>
+            <th data-key="country" aria-sort="ascending">Country</th>
+            <th data-key="capital">Capital</th>
           </tr>
         </thead>
         <tbody id="trainBody"></tbody>
@@ -49,6 +50,8 @@
       const input = document.getElementById('filterInput');
       const clearBtn = document.getElementById('clearFilter');
       const rows = Array.isArray(window.DATA) ? window.DATA.slice() : [];
+      let sortKey = 'country';
+      let sortDir = 1; // 1 asc, -1 desc
 
       function norm(s){ return (s||'').toString().toLowerCase(); }
       function matches(r, q){
@@ -59,6 +62,12 @@
             || (Array.isArray(r.countryAlt) && r.countryAlt.some(a=>norm(a).includes(t)))
             || norm(r.capital).includes(t)
             || (Array.isArray(r.capitalAlt) && r.capitalAlt.some(a=>norm(a).includes(t)));
+      }
+
+      function cmp(a,b){
+        const A = (sortKey==='flag') ? (a.flag||'') : (a[sortKey]||'');
+        const B = (sortKey==='flag') ? (b.flag||'') : (b[sortKey]||'');
+        return A.localeCompare(B, undefined, {sensitivity:'base'}) * sortDir;
       }
 
       function render(list){
@@ -78,13 +87,28 @@
       }
 
       function apply(){
-        const q=input.value||''; render(rows.filter(r=>matches(r,q)));
+        const q=input.value||'';
+        let list = rows.filter(r=>matches(r,q)).sort(cmp);
+        render(list);
       }
 
       input.addEventListener('input', apply);
       clearBtn.addEventListener('click', ()=>{ input.value=''; apply(); input.focus(); });
 
-      render(rows);
+      // Sortable headers
+      const thead = document.querySelector('table.reveal-table thead');
+      thead.addEventListener('click', (e)=>{
+        const th = e.target.closest('th[data-key]'); if(!th) return;
+        const key = th.getAttribute('data-key');
+        if(key===sortKey){ sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+        // Update aria-sort
+        thead.querySelectorAll('th[data-key]').forEach(el=> el.removeAttribute('aria-sort'));
+        th.setAttribute('aria-sort', sortDir===1? 'ascending':'descending');
+        apply();
+      });
+
+      // initial render (sorted by country asc)
+      apply();
     })();
   </script>
 </body>

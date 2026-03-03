@@ -14,14 +14,13 @@
  <button data-mode="capital-to-country">Capital → Country</button>
  <button data-mode="country-to-capital">Country → Capital</button>
  <button data-mode="flag-to-capital">Flag → Capital</button>
- <a style="margin-left:8px;color:white" href="index.html">Home</a>
-  <a class="btn-link" href="mistakes.html">Mistakes</a>
+ <a class="btn-link" href="index.html">Home</a>
  </nav>
  </header>
  <main>
  <section class="hud hud--ribbon">
   <div class="ribbon" role="group" aria-label="Game info ribbon">
-    <div class="stopwatch">⏱ <span id="timer">00:00.0</span></div>
+    <div class="stopwatch">⏱ <span id="timer">00:00.0</span> <span id="penaltyChip" class="pill">+5s</span></div>
     <div class="ribbon-gap ribbon-gap--large" aria-hidden="true"></div>
     <span class="pill" id="hudProgress" aria-label="Progress">1/0 (0 left)</span>
     <span class="pill" id="hudCorrect"  aria-label="Correct answers">Correct: 0</span>
@@ -43,7 +42,7 @@
  <div id="prompt"></div>
  <div id="dupBadge" class="badge hidden">Multiple answers available, don't reuse the same one!</div>
  <div id="flagWrap" class="flag hidden">
- <img id="flagImg" alt="" role="presentation" aria-hidden="true" />
+ <img id="flagImg" alt="Flag" />
  </div>
  <form id="answerForm" autocomplete="off">
  <input id="answerInput" type="text" placeholder="Type your answer and press Enter" />
@@ -53,7 +52,7 @@
  <button type="button" id="revealBtn">Reveal</button>
  </div></p>
  </form>
- <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true"></div>
+ <div id="feedback" class="feedback"></div>
  </section>
  <section class="panels">
  <div class="panel">
@@ -70,6 +69,7 @@
  <tbody id="leaderboardBody"></tbody>
  </table>
  <button id="clearLeaderboard">Clear Leaderboard</button>
+      <div id="lbFootnote" class="muted" style="margin-top:6px">* includes penalties</div>
  </div>
  </section>
  </main>
