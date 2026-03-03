@@ -232,6 +232,7 @@ img, svg, video, canvas {
   }
 }
 
+
 /* Center prompt, feedback text, and duplicate warning */
 #prompt, .feedback, #dupBadge { text-align:center; }
 /* Penalty chip visibility */
