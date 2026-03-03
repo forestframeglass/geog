@@ -233,8 +233,8 @@ img, svg, video, canvas {
 }
 
 
-/* Center prompt, feedback text, and duplicate warning */
-#prompt, .feedback, #dupBadge { text-align:center; }
-/* Penalty chip visibility */
-#penaltyChip.show { display:inline-block !important; }
-
+/* Utility row beneath main quiz grid */
+.utility-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.card--utility{background:#0b1220;border:1px dashed #374151}
+.card--utility h4{margin:0 0 6px 0;font-size:15px;color:#e5e7eb}
+.card--utility p{margin:0;color:var(--muted);font-size:12px;line-height:1.3}
