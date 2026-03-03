@@ -231,7 +231,7 @@ img, svg, video, canvas {
     width: min(360px, 90%);
   }
 }
-
+ 
 
 /* Utility row beneath main quiz grid */
 .utility-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
