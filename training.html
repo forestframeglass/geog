@@ -1,289 +1,323 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Training – Geography Trainer</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Training • Flags, Countries & Capitals</title>
+  <link rel="icon" href="icon-192.png" sizes="192x192">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    .train-wrap{max-width:980px;margin:16px auto;padding:0 16px}
-    .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 12px}
-    .filter-wrap{position:relative; flex:1 1 260px; max-width:520px}
-    .filter-wrap input{width:100%; padding-right:34px}
-    #filterClear{position:absolute; right:6px; top:50%; transform:translateY(-50%); width:24px; height:24px; border-radius:50%; border:1px solid #374151; background:#1f2937; color:#e5e7eb; line-height:22px; text-align:center; cursor:pointer}
-    #filterClear:hover{border-color:#38bdf8; color:#fff}
-    .group-filter{position:relative}
-    .group-panel{position:absolute; left:0; top:calc(100% + 6px); background:#0b1220; border:1px solid #1f2937; padding:10px; border-radius:8px; min-width:240px; max-height:240px; overflow:auto; z-index:40}
-    .group-panel.hidden{display:none}
-    .group-actions{display:flex; gap:6px; margin-bottom:8px}
-    .group-list{display:grid; grid-template-columns:1fr; gap:6px}
-    .chip{display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid #374151; background:#111827; color:#e5e7eb; font-size:12px; margin:2px 4px 2px 0}
-    .flagcol img{max-height:36px; border:1px solid #374151; border-radius:3px; cursor:pointer}
-    .flagcol img.expanded{max-height:none; height:280px}
-    .results-pill{margin-left:auto}
-    @media (max-width:560px){ .results-pill{order:4; width:100%; text-align:center} }
+    /* Lightweight, component-scoped additions for Training page */
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 1rem 0; }
+    .toolbar .spacer { flex: 1 1 auto; }
+    .filters { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+    .badge { display:inline-block; min-width:1.5em; padding:0 .5em; border-radius:999px; background:#eee; color:#333; font-size:.8rem; text-align:center; }
+    .pill { display:inline-block; padding:.125rem .5rem; border-radius:999px; background:#f2f4f7; color:#333; font-size:.8rem; margin:.125rem; white-space:nowrap; }
+    .flag-img { height:32px; transition:height .15s ease; cursor:pointer; }
+    .flag-img.expanded { height:280px; }
+    .flag-cell { outline:none; }
+    .table { width:100%; border-collapse: collapse; }
+    .table th, .table td { padding:.5rem; border-bottom:1px solid #e6e6e6; vertical-align:top; }
+    .table th { cursor:pointer; user-select:none; white-space:nowrap; }
+    .table th .caret { margin-left:.35rem; font-size:.85em; opacity:.75; }
+    .grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+    .group-panel { border:1px solid #e6e6e6; border-radius:.5rem; padding:.75rem; max-height:280px; overflow:auto; }
+    .group-panel h3 { margin:.25rem 0 .5rem; font-size:1rem; display:flex; align-items:center; gap:.5rem; }
+    .group-actions { display:flex; gap:.5rem; margin-bottom:.5rem; }
+    .input-wrap { position:relative; display:inline-block; }
+    .input-wrap input[type="text"]{ padding-right:2rem; }
+    .clear-btn { position:absolute; right:.35rem; top:50%; transform:translateY(-50%); border:0; background:transparent; cursor:pointer; font-size:1.1rem; line-height:1; color:#777; }
+    @media (min-width: 900px) {
+      .grid { grid-template-columns: 300px 1fr; }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Training</h1>
-    <nav class="modes">
-      <a class="btn-link" href="index.html">Home</a>
-      <a class="btn-link" href="quiz.html">Start a Game</a>
-    </nav>
+    <p>Study the full list of flags, countries & capitals. Filter by text and groups. Click a flag to expand.</p>
   </header>
-  <main class="train-wrap">
-    <p class="muted">Browse the full list (Flag, Country, Capital). Filter by text and/or groups. Click a flag to enlarge.</p>
 
-    <div class="controls" aria-label="Filters">
-      <div class="filter-wrap">
-        <input id="filterInput" type="text" placeholder="Filter by country, capital, ISO, or group…" aria-label="Filter table" />
-        <button id="filterClear" type="button" title="Clear filter">×</button>
+  <section class="toolbar">
+    <div class="filters">
+      <label for="textFilter">Filter</label>
+      <div class="input-wrap">
+        <input id="textFilter" type="text" placeholder="Search country or capital" aria-label="Search country or capital" />
+        <button id="clearTextBtn" class="clear-btn" title="Clear">×</button>
       </div>
-
-      <div class="group-filter" id="groupFilterWrap">
-        <button id="groupToggle" class="btn-link" type="button" aria-expanded="false" aria-controls="groupPanel">Groups</button>
-        <div id="groupPanel" class="group-panel hidden" role="dialog" aria-label="Select groups">
-          <div class="group-actions">
-            <button id="groupAll" type="button" class="btn-link">All</button>
-            <button id="groupNone" type="button" class="btn-link">None</button>
-          </div>
-          <div id="groupList" class="group-list"></div>
-        </div>
-      </div>
-
-      <span id="resultBadge" class="pill results-pill">Results: 0</span>
-      <button id="clearAll" class="btn-link" type="button" title="Clear all filters">Clear All</button>
+      <span id="resultsBadge" class="badge" aria-live="polite">0</span>
     </div>
+    <div class="spacer"></div>
+  </section>
 
-    <div class="panel">
-      <h2>Study Table</h2>
-      <table class="reveal-table" aria-label="Training table">
+  <section class="grid">
+    <aside>
+      <div class="group-panel" aria-labelledby="groupsLabel">
+        <h3 id="groupsLabel">Groups <span id="groupsSelectedBadge" class="badge">0</span></h3>
+        <div class="group-actions">
+          <button id="btnSelectAll" type="button">All</button>
+          <button id="btnSelectNone" type="button">None</button>
+        </div>
+        <div id="groupList"></div>
+      </div>
+    </aside>
+
+    <div>
+      <table class="table" id="trainTable">
         <thead>
           <tr>
-            <th data-key="flag">Flag <span class="caret"></span></th>
-            <th data-key="country" aria-sort="ascending">Country <span class="caret">▲</span></th>
-            <th data-key="capital">Capital <span class="caret"></span></th>
-            <th data-key="groups">Groups <span class="caret"></span></th>
+            <th data-key="country" scope="col">Country <span class="caret" aria-hidden="true"></span></th>
+            <th data-key="capital" scope="col">Capital <span class="caret" aria-hidden="true"></span></th>
+            <th data-key="flag" scope="col">Flag <span class="caret" aria-hidden="true"></span></th>
+            <th scope="col">Groups</th>
           </tr>
         </thead>
         <tbody id="trainBody"></tbody>
       </table>
     </div>
-  </main>
-  <footer><small class="centerfoot"></small></footer>
+  </section>
 
   <script src="data_v2.js"></script>
   <script>
+  // Older JS (no modern syntax) to match Safari/WebView compatibility
   (function(){
-    var body = document.getElementById('trainBody');
-    var input = document.getElementById('filterInput');
-    var btnClear = document.getElementById('filterClear');
-    var btnClearAll = document.getElementById('clearAll');
-    var resultBadge = document.getElementById('resultBadge');
+    // namespace + storage keys
+    var STORE_SORT = 'gt.v2.train.sort';
+    var STORE_GROUPS = 'gt.v2.train.groups';
 
-    var groupWrap = document.getElementById('groupFilterWrap');
-    var groupToggle = document.getElementById('groupToggle');
-    var groupPanel = document.getElementById('groupPanel');
+    // defensive DATA check
+    if (typeof DATA === 'undefined' || !DATA || !DATA.length) {
+      console.error('DATA is missing. Ensure data_v2.js is loaded before this script.');
+      window.DATA = [];
+    }
+
+    // Normalize groups on data rows to []
+    for (var i=0;i<DATA.length;i++) {
+      if (!DATA[i].groups) DATA[i].groups = [];
+    }
+
+    var textFilterEl = document.getElementById('textFilter');
+    var clearTextBtn = document.getElementById('clearTextBtn');
+    var resultsBadge = document.getElementById('resultsBadge');
+    var groupsSelectedBadge = document.getElementById('groupsSelectedBadge');
     var groupListEl = document.getElementById('groupList');
-    var btnGroupAll = document.getElementById('groupAll');
-    var btnGroupNone = document.getElementById('groupNone');
+    var tbody = document.getElementById('trainBody');
+    var table = document.getElementById('trainTable');
 
-    var rows = Array.isArray(window.DATA) ? window.DATA.slice() : [];
+    // Build distinct group list
+    var groupSet = {};
+    for (var j=0;j<DATA.length;j++) {
+      var gs = DATA[j].groups || [];
+      for (var k=0;k<gs.length;k++) {
+        var g = String(gs[k]).trim();
+        if (g) groupSet[g] = true;
+      }
+    }
+    var groups = [];
+    for (var gk in groupSet) { if (groupSet.hasOwnProperty(gk)) groups.push(gk); }
+    groups.sort();
 
-    // --- state ---
-    var sortKey = 'country';
-    var sortDir = 1; // 1 asc, -1 desc
-    var allGroups = [];
+    // Restore selected groups from storage
     var selectedGroups = [];
+    try { var saved = window.localStorage.getItem(STORE_GROUPS); if (saved) selectedGroups = JSON.parse(saved); } catch(e){}
 
-    // restore persisted
-    try{
-      var s = JSON.parse(localStorage.getItem('gt.v2.train.sort')||'null');
-      if(s && s.key){ sortKey = s.key; sortDir = (s.dir===-1)? -1 : 1; }
-    }catch(e){}
-    try{
-      var g = JSON.parse(localStorage.getItem('gt.v2.train.groups')||'null');
-      if(Array.isArray(g)) selectedGroups = g;
-    }catch(e){}
+    // Render group checkbox list
+    function renderGroupList(){
+      var html = '';
+      for (var i=0;i<groups.length;i++) {
+        var id = 'grp_'+i;
+        var label = groups[i];
+        var checked = selectedGroups.indexOf(label) !== -1 ? ' checked' : '';
+        html += '<div><label><input type="checkbox" data-group="'+escapeHtml(label)+'"'+checked+'> '+escapeHtml(label)+'</label></div>';
+      }
+      groupListEl.innerHTML = html;
+      updateGroupsSelectedBadge();
+    }
 
-    function norm(s){ return (s||'').toString().toLowerCase(); }
+    function updateGroupsSelectedBadge(){
+      groupsSelectedBadge.textContent = String(selectedGroups.length);
+    }
 
-    function collectGroups(){
-      var set = {};
-      for(var i=0;i<rows.length;i++){
-        var gs = rows[i] && rows[i].groups; // expect array when new data ships
-        if(Array.isArray(gs)){
-          for(var j=0;j<gs.length;j++){
-            var key = (gs[j]||'').trim();
-            if(key){ set[key]=1; }
+    function saveSelectedGroups(){
+      try { window.localStorage.setItem(STORE_GROUPS, JSON.stringify(selectedGroups)); } catch(e){}
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#39;');
+    }
+
+    // Sorting
+    var sortState = { key: 'country', dir: 'asc' };
+    try { var s = window.localStorage.getItem(STORE_SORT); if (s) sortState = JSON.parse(s); } catch(e){}
+
+    function saveSort(){
+      try { window.localStorage.setItem(STORE_SORT, JSON.stringify(sortState)); } catch(e){}
+    }
+
+    function compare(a,b,key){
+      var av = key === 'flag' ? (a.flag || '') : key === 'capital' ? (a.capital || '') : (a.country || a.name || '');
+      var bv = key === 'flag' ? (b.flag || '') : key === 'capital' ? (b.capital || '') : (b.country || b.name || '');
+      av = String(av).toLowerCase();
+      bv = String(bv).toLowerCase();
+      if (av < bv) return sortState.dir === 'asc' ? -1 : 1;
+      if (av > bv) return sortState.dir === 'asc' ? 1 : -1;
+      return 0;
+    }
+
+    function setCaret(){
+      var ths = table.tHead ? table.tHead.rows[0].cells : [];
+      for (var i=0;i<ths.length;i++){
+        var th = ths[i];
+        var key = th.getAttribute('data-key');
+        var caret = th.querySelector('.caret');
+        if (caret) {
+          if (key === sortState.key) {
+            caret.textContent = sortState.dir === 'asc' ? '▲' : '▼';
+            caret.style.visibility = 'visible';
+          } else {
+            caret.textContent = '';
+            caret.style.visibility = 'hidden';
           }
         }
       }
-      allGroups = Object.keys(set).sort(function(a,b){ return a.localeCompare(b); });
     }
 
-    function buildGroupUI(){
-      groupListEl.innerHTML='';
-      if(!allGroups.length){
-        // hide UI and column header label
-        groupWrap.style.display='none';
-        // Also hide Groups column if nobody has groups
-        var ths = document.querySelectorAll('thead th');
-        if(ths && ths.length>=4){ ths[3].style.display='none'; }
-        return;
+    // Filtering
+    function passesGroupFilter(item){
+      if (!selectedGroups || selectedGroups.length === 0) return true;
+      var itemGroups = item.groups || [];
+      for (var i=0;i<itemGroups.length;i++) {
+        if (selectedGroups.indexOf(String(itemGroups[i])) !== -1) return true;
       }
-      groupWrap.style.display='';
-      for(var i=0;i<allGroups.length;i++){
-        var g = allGroups[i];
-        var id = 'g_'+i;
-        var div = document.createElement('label');
-        div.style.display='flex';
-        div.style.alignItems='center';
-        div.style.gap='6px';
-        var cb = document.createElement('input');
-        cb.type='checkbox'; cb.id=id; cb.value=g;
-        cb.checked = selectedGroups.indexOf(g)>=0 || selectedGroups.length===0; // treat empty selection as all
-        (function(val){ cb.addEventListener('change', function(){ onGroupToggle(val, cb.checked); }); })(g);
-        var span = document.createElement('span'); span.textContent=g;
-        div.appendChild(cb); div.appendChild(span);
-        groupListEl.appendChild(div);
-      }
-      updateGroupToggleAria(false);
+      return false;
     }
 
-    function onGroupToggle(group, isChecked){
-      var idx = selectedGroups.indexOf(group);
-      if(isChecked){ if(idx<0) selectedGroups.push(group); }
-      else { if(idx>=0) selectedGroups.splice(idx,1); }
-      persistGroups();
-      apply();
+    function passesTextFilter(item){
+      var q = String(textFilterEl.value || '').toLowerCase();
+      if (!q) return true;
+      var country = String(item.country || item.name || '').toLowerCase();
+      var capital = String(item.capital || '').toLowerCase();
+      return country.indexOf(q) !== -1 || capital.indexOf(q) !== -1;
     }
 
-    function persistGroups(){
-      // Persist only when not "All"; if all or none selected, we treat as empty (all)
-      var toSave = selectedGroups.slice();
-      // If selection equals allGroups, store empty to mean "All"
-      if(toSave.length===allGroups.length) toSave = [];
-      localStorage.setItem('gt.v2.train.groups', JSON.stringify(toSave));
-    }
-
-    function setSort(key, dir){ sortKey=key; sortDir=dir; localStorage.setItem('gt.v2.train.sort', JSON.stringify({key:key, dir:dir})); }
-
-    function matches(r, q){
-      // text
-      if(q){
-        var t = q.trim().toLowerCase();
-        var ok = false;
-        if(String(r.iso||'').toLowerCase().indexOf(t)>-1) ok=true;
-        if(!ok && String(r.country||'').toLowerCase().indexOf(t)>-1) ok=true;
-        if(!ok && Array.isArray(r.countryAlt)){
-          for(var i=0;i<r.countryAlt.length;i++){ if(String(r.countryAlt[i]||'').toLowerCase().indexOf(t)>-1){ ok=true; break; } }
-        }
-        if(!ok && String(r.capital||'').toLowerCase().indexOf(t)>-1) ok=true;
-        if(!ok && Array.isArray(r.capitalAlt)){
-          for(var j=0;j<r.capitalAlt.length;j++){ if(String(r.capitalAlt[j]||'').toLowerCase().indexOf(t)>-1){ ok=true; break; } }
-        }
-        if(!ok && Array.isArray(r.groups)){
-          for(var k=0;k<r.groups.length;k++){ if(String(r.groups[k]||'').toLowerCase().indexOf(t)>-1){ ok=true; break; } }
-        }
-        if(!ok) return false;
-      }
-      // groups (multi-select OR logic). If no groups in data or none selected, allow all.
-      if(allGroups.length && selectedGroups.length){
-        var gs = Array.isArray(r.groups)? r.groups : [];
-        var hit = false;
-        for(var i2=0;i2<gs.length;i2++){ if(selectedGroups.indexOf(gs[i2])>=0){ hit=true; break; } }
-        if(!hit) return false;
-      }
-      return true;
-    }
-
-    function cmp(a,b){
-      function val(r){
-        if(sortKey==='flag') return String(r.flag||'');
-        if(sortKey==='groups') return Array.isArray(r.groups)? r.groups.join(', '): '';
-        return String(r[sortKey]||'');
-      }
-      var A = val(a); var B = val(b);
-      return A.localeCompare(B, undefined, {sensitivity:'base'}) * sortDir;
-    }
-
-    function render(list){
-      body.innerHTML='';
-      var hasAnyGroups = false;
-      for(var i=0;i<list.length;i++){
-        var r = list[i];
-        var tr=document.createElement('tr');
-        // Flag
-        var tdF=document.createElement('td'); tdF.className='flagcol';
-        if(r.flag){ var img=document.createElement('img'); img.src=r.flag; img.alt=''; img.setAttribute('role','presentation'); img.setAttribute('aria-hidden','true'); img.tabIndex=0; img.addEventListener('click', onFlagToggle); img.addEventListener('keydown', function(ev){ var k=ev.key?ev.key.toLowerCase():''; if(k==='enter' || k===' '){ ev.preventDefault(); onFlagToggle.call(this, ev); } }); tdF.appendChild(img); }
-        // Country / Capital
-        var tdC=document.createElement('td'); tdC.textContent=r.country||'';
-        var tdK=document.createElement('td'); tdK.textContent=r.capital||'';
-        // Groups chips
-        var tdG=document.createElement('td');
-        if(Array.isArray(r.groups) && r.groups.length){ hasAnyGroups=true; for(var g=0; g<r.groups.length; g++){ var chip=document.createElement('span'); chip.className='chip'; chip.textContent=r.groups[g]; tdG.appendChild(chip);} }
-        tr.appendChild(tdF); tr.appendChild(tdC); tr.appendChild(tdK); tr.appendChild(tdG);
-        body.appendChild(tr);
-      }
-      // If no groups present in data at all, hide the Groups header to keep table tidy
-      var ths = document.querySelectorAll('thead th');
-      if(ths && ths.length>=4){ ths[3].style.display = hasAnyGroups? '' : 'none'; }
-      if(!list.length){ var tr=document.createElement('tr'); var td=document.createElement('td'); td.colSpan=4; td.textContent='No rows match your filter.'; tr.appendChild(td); body.appendChild(tr); }
-      resultBadge.textContent = 'Results: '+list.length;
-      // Toggle the small clear X visibility
-      btnClear.style.display = input.value ? '' : 'none';
-    }
-
-    function onFlagToggle(){
+    function toggleFlag(img){
+      var expanded = img.className.indexOf('expanded') !== -1;
       // collapse any expanded
-      var expanded = body.querySelector('img.expanded');
-      if(expanded && expanded!==this){ expanded.classList.remove('expanded'); }
-      this.classList.toggle('expanded');
+      var imgs = document.querySelectorAll('.flag-img.expanded');
+      for (var i=0;i<imgs.length;i++) imgs[i].className = imgs[i].className.replace(' expanded','');
+      if (!expanded) img.className += ' expanded';
     }
 
-    function apply(){
-      var q=input.value||'';
-      var list = [];
-      for(var i=0;i<rows.length;i++){ if(matches(rows[i], q)) list.push(rows[i]); }
-      list.sort(cmp);
-      render(list);
+    function collapseFlags(){
+      var imgs = document.querySelectorAll('.flag-img.expanded');
+      for (var i=0;i<imgs.length;i++) imgs[i].className = imgs[i].className.replace(' expanded','');
     }
 
-    // Groups panel toggle
-    function updateGroupToggleAria(open){ groupToggle.setAttribute('aria-expanded', open? 'true':'false'); }
-    function openPanel(){ groupPanel.classList.remove('hidden'); updateGroupToggleAria(true); }
-    function closePanel(){ groupPanel.classList.add('hidden'); updateGroupToggleAria(false); }
+    function render(){
+      // apply filters
+      var rows = [];
+      for (var i=0;i<DATA.length;i++) {
+        var it = normalizeRow(DATA[i]);
+        if (passesTextFilter(it) && passesGroupFilter(it)) rows.push(it);
+      }
+      // sort
+      rows.sort(function(a,b){ return compare(a,b,sortState.key); });
+      // render
+      var out = '';
+      for (var r=0;r<rows.length;r++) {
+        var rx = rows[r];
+        var chips = '';
+        for (var c=0;c<rx.groups.length;c++) chips += '<span class="pill">'+escapeHtml(rx.groups[c])+'</span>';
+        out += '<tr>'+
+          '<td>'+escapeHtml(rx.country)+'</td>'+
+          '<td>'+escapeHtml(rx.capital || '')+'</td>'+
+          '<td><div class="flag-cell" tabindex="0" role="button" aria-pressed="false">'+
+              '<img class="flag-img" src="'+escapeHtml(rx.flag)+'" alt="Flag of '+escapeHtml(rx.country)+'" />'+
+            '</div></td>'+
+          '<td>'+chips+'</td>'+
+        '</tr>';
+      }
+      tbody.innerHTML = out;
+      resultsBadge.textContent = String(rows.length);
 
-    groupToggle.addEventListener('click', function(){ if(groupPanel.classList.contains('hidden')) openPanel(); else closePanel(); });
-    document.addEventListener('click', function(ev){ if(!groupPanel.contains(ev.target) && !groupToggle.contains(ev.target)) closePanel(); });
+      // wire flag toggles
+      var cells = tbody.querySelectorAll('.flag-cell');
+      var onClick = function(e){ var img = this.querySelector('img'); if (img) toggleFlag(img); };
+      var onKey = function(e){
+        e = e || window.event;
+        var key = e.key || e.keyCode;
+        if (key === 'Enter' || key === ' ' || key === 13 || key === 32) { e.preventDefault(); var img = this.querySelector('img'); if (img) toggleFlag(img); }
+        if (key === 'Escape' || key === 'Esc' || key === 27) { collapseFlags(); }
+      };
+      for (var i=0;i<cells.length;i++) {
+        cells[i].addEventListener('click', onClick, false);
+        cells[i].addEventListener('keydown', onKey, false);
+        cells[i].addEventListener('touchstart', onClick, {passive:true});
+      }
+    }
 
-    btnGroupAll.addEventListener('click', function(){ selectedGroups = allGroups.slice(); persistGroups(); // reflect in checkboxes
-      var cbs = groupListEl.querySelectorAll('input[type="checkbox"]'); for(var i=0;i<cbs.length;i++){ cbs[i].checked=true; } apply(); });
-    btnGroupNone.addEventListener('click', function(){ selectedGroups = []; persistGroups(); var cbs = groupListEl.querySelectorAll('input[type="checkbox"]'); for(var i=0;i<cbs.length;i++){ cbs[i].checked=false; } apply(); });
+    function normalizeRow(item){
+      return {
+        country: item.country || item.name || '',
+        capital: item.capital || '',
+        flag: item.flag || item.image || item.img || '',
+        groups: item.groups || []
+      };
+    }
 
-    // Input clear buttons
-    btnClear.addEventListener('click', function(){ input.value=''; apply(); input.focus(); });
-    btnClearAll.addEventListener('click', function(){ input.value=''; selectedGroups=[]; persistGroups(); var cbs = groupListEl.querySelectorAll('input[type="checkbox"]'); for(var i=0;i<cbs.length;i++){ cbs[i].checked=false; } apply(); input.focus(); });
+    // header click (sorting)
+    if (table && table.tHead && table.tHead.rows[0]){
+      var ths = table.tHead.rows[0].cells;
+      for (var i=0;i<ths.length;i++){
+        (function(th){
+          var key = th.getAttribute('data-key');
+          if (!key) return;
+          th.addEventListener('click', function(){
+            if (sortState.key === key) sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+            else { sortState.key = key; sortState.dir = 'asc'; }
+            saveSort();
+            setCaret();
+            render();
+          }, false);
+        })(ths[i]);
+      }
+    }
 
-    // Sortable headers
-    var thead = document.querySelector('table.reveal-table thead');
-    thead.addEventListener('click', function(e){ var th = e.target.closest('th[data-key]'); if(!th) return; var key = th.getAttribute('data-key'); if(key===sortKey){ sortDir *= -1; } else { sortKey = key; sortDir = 1; } setSort(sortKey, sortDir); // update carets
-      var ths = thead.querySelectorAll('th[data-key]');
-      for(var i=0;i<ths.length;i++){ ths[i].removeAttribute('aria-sort'); var cs = ths[i].querySelector('.caret'); if(cs) cs.textContent=''; }
-      th.setAttribute('aria-sort', sortDir===1? 'ascending':'descending'); var caret = th.querySelector('.caret'); if(caret) caret.textContent = sortDir===1? '▲':'▼'; apply(); });
+    // text filter
+    textFilterEl.addEventListener('input', function(){ render(); }, false);
+    clearTextBtn.addEventListener('click', function(){ textFilterEl.value=''; textFilterEl.focus(); render(); }, false);
+
+    // group selection events
+    groupListEl.addEventListener('change', function(e){
+      var t = e.target || e.srcElement;
+      if (t && t.type === 'checkbox' && t.getAttribute('data-group') != null) {
+        var label = t.getAttribute('data-group');
+        var idx = selectedGroups.indexOf(label);
+        if (t.checked && idx === -1) selectedGroups.push(label);
+        if (!t.checked && idx !== -1) selectedGroups.splice(idx,1);
+        updateGroupsSelectedBadge();
+        saveSelectedGroups();
+        render();
+      }
+    }, false);
+
+    // Bulk actions
+    document.getElementById('btnSelectAll').addEventListener('click', function(){ selectedGroups = groups.slice(0); saveSelectedGroups(); renderGroupList(); render(); }, false);
+    document.getElementById('btnSelectNone').addEventListener('click', function(){ selectedGroups = []; saveSelectedGroups(); renderGroupList(); render(); }, false);
 
     // init
-    collectGroups();
-    buildGroupUI();
+    renderGroupList();
+    setCaret();
+    render();
 
-    // reflect restored sort UI
-    (function(){ var ths = document.querySelectorAll('thead th[data-key]'); for(var i=0;i<ths.length;i++){ var k=ths[i].getAttribute('data-key'); var cs=ths[i].querySelector('.caret'); if(k===sortKey){ ths[i].setAttribute('aria-sort', sortDir===1? 'ascending':'descending'); if(cs) cs.textContent = sortDir===1? '▲':'▼'; } else { ths[i].removeAttribute('aria-sort'); if(cs) cs.textContent=''; } } })();
-
-    input.addEventListener('input', apply);
-    apply();
+    // SW register (optional)
+    if ('serviceWorker' in navigator) { try { navigator.serviceWorker.register('service-worker.js'); } catch(e){} }
   })();
   </script>
 </body>

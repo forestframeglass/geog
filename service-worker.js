@@ -1,23 +1,48 @@
+/* geog PWA service worker – v2.0.5 */
+var CACHE_NAME = 'geog-cache-v2.0.5';
+var PRECACHE_URLS = [
+  '/',
+  '/index.html',
+  '/quiz.html',
+  '/leaderboards.html',
+  '/training.html',
+  '/mistakes.html',
+  '/verify.html',
+  '/styles.css',
+  '/app_v2.js',
+  '/data_v2.js',
+  '/manifest.webmanifest',
+  '/icon-192.png',
+  '/icon-512.png'
+];
 
-/* geo-trainer V2 Service Worker */
-const VERSION='v2.0.5';
-const CORE_CACHE=`core-${VERSION}`;
-const RUNTIME_SVG_CACHE=`svg-${VERSION}`;
-const CORE_ASSETS=['training.html','mistakes.html','index.html','quiz.html','leaderboards.html','verify.html','manifest.webmanifest'];
+self.addEventListener('install', function(event){
+  self.skipWaiting();
+  event.waitUntil(caches.open(CACHE_NAME).then(function(cache){ return cache.addAll(PRECACHE_URLS); }));
+});
 
-self.addEventListener('install',e=>{e.waitUntil((async()=>{const c=await caches.open(CORE_CACHE); await c.addAll(CORE_ASSETS); await self.skipWaiting();})())});
-self.addEventListener('activate',e=>{e.waitUntil((async()=>{const keys=await caches.keys(); await Promise.all(keys.map(k=>{ if(!k.includes(VERSION)) return caches.delete(k); })); await self.clients.claim();})())});
+self.addEventListener('activate', function(event){
+  event.waitUntil(
+    caches.keys().then(function(keys){
+      return Promise.all(keys.map(function(k){ if (k !== CACHE_NAME) return caches.delete(k); }));
+    }).then(function(){ return self.clients.claim(); })
+  );
+});
 
-async function swr(cacheName, request){
-  const cache = await caches.open(cacheName);
-  const cached = await cache.match(request);
-  const fetchPromise = fetch(new Request(request,{credentials:'omit',cache:'no-store'})).then(r=>{ if(r && r.ok) cache.put(request, r.clone()); return r; }).catch(()=>cached);
-  return cached || fetchPromise;
-}
-
-self.addEventListener('fetch', e=>{
-  const url=new URL(e.request.url);
-  if(e.request.method!=='GET') return;
-  if(url.pathname.endsWith('.svg') && url.pathname.includes('/svg/')){ e.respondWith(swr(RUNTIME_SVG_CACHE, e.request)); return; }
-  if(CORE_ASSETS.some(p=> url.pathname.endsWith(p))){ e.respondWith((async()=>{try{const r=await fetch(e.request); const c=await caches.open(CORE_CACHE); c.put(e.request, r.clone()); return r;}catch(_){ const c=await caches.open(CORE_CACHE); const m=await c.match(e.request); return m||Response.error(); }})()); return; }
+self.addEventListener('fetch', function(event){
+  var req = event.request;
+  if (req.method !== 'GET' || req.url.indexOf('http') !== 0) return; // pass through non-GETs and non-http
+  event.respondWith(
+    caches.match(req).then(function(res){
+      var fetchPromise = fetch(req).then(function(networkRes){
+        // cache a copy for next time (only for same-origin)
+        if (networkRes && networkRes.status === 200 && new URL(req.url).origin === self.location.origin) {
+          var copy = networkRes.clone();
+          caches.open(CACHE_NAME).then(function(cache){ cache.put(req, copy); });
+        }
+        return networkRes;
+      }).catch(function(){ return res; });
+      return res || fetchPromise;
+    })
+  );
 });

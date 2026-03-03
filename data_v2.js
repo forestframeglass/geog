@@ -1,4 +1,5 @@
 window.DATA = [
+[
   {
     "iso": "AB",
     "country": "Abkhazia",
@@ -8,8 +9,8 @@ window.DATA = [
     "flag": "svg/ab.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Disputed", "Europe", "Star"]},
+{
     "iso": "AF",
     "country": "Afghanistan",
     "countryAlt": [],
@@ -18,8 +19,8 @@ window.DATA = [
     "flag": "svg/af.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "AX",
     "country": "Åland Islands",
     "countryAlt": [
@@ -32,8 +33,8 @@ window.DATA = [
     "flag": "svg/ax.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe", "Overseas Territory"]},
+{
     "iso": "AL",
     "country": "Albania",
     "countryAlt": [],
@@ -42,8 +43,8 @@ window.DATA = [
     "flag": "svg/al.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "DZ",
     "country": "Algeria",
     "countryAlt": [],
@@ -52,8 +53,8 @@ window.DATA = [
     "flag": "svg/dz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Islamic", "Star"]},
+{
     "iso": "AS",
     "country": "American Samoa",
     "countryAlt": [],
@@ -62,8 +63,8 @@ window.DATA = [
     "flag": "svg/as.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory"]},
+{
     "iso": "AD",
     "country": "Andorra",
     "countryAlt": [],
@@ -72,8 +73,8 @@ window.DATA = [
     "flag": "svg/ad.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "AO",
     "country": "Angola",
     "countryAlt": [],
@@ -82,8 +83,8 @@ window.DATA = [
     "flag": "svg/ao.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "AI",
     "country": "Anguilla",
     "countryAlt": [],
@@ -94,8 +95,8 @@ window.DATA = [
     "flag": "svg/ai.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Union Jack"]},
+{
     "iso": "AG",
     "country": "Antigua and Barbuda",
     "countryAlt": [
@@ -112,8 +113,8 @@ window.DATA = [
     "flag": "svg/ag.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "AR",
     "country": "Argentina",
     "countryAlt": [],
@@ -122,8 +123,8 @@ window.DATA = [
     "flag": "svg/ar.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America"]},
+{
     "iso": "AM",
     "country": "Armenia",
     "countryAlt": [],
@@ -132,8 +133,8 @@ window.DATA = [
     "flag": "svg/am.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "AW",
     "country": "Aruba",
     "countryAlt": [],
@@ -142,8 +143,8 @@ window.DATA = [
     "flag": "svg/aw.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes Aruba"
-  },
-  {
+  , groups: ["Central America", "Duplicate Capital", "Overseas Territory", "Star"]},
+{
     "iso": "AN",
     "country": "Ascension",
     "countryAlt": [
@@ -154,8 +155,8 @@ window.DATA = [
     "flag": "svg/an.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes Guyana"
-  },
-  {
+  , groups: ["Duplicate Capital", "South America", "Union Jack"]},
+{
     "iso": "AU",
     "country": "Australia",
     "countryAlt": [],
@@ -164,8 +165,8 @@ window.DATA = [
     "flag": "svg/au.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Southern Cross", "Star", "Union Jack"]},
+{
     "iso": "AT",
     "country": "Austria",
     "countryAlt": [],
@@ -174,8 +175,8 @@ window.DATA = [
     "flag": "svg/at.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "AZ",
     "country": "Azerbaijan",
     "countryAlt": [],
@@ -184,8 +185,8 @@ window.DATA = [
     "flag": "svg/az.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Islamic", "Star"]},
+{
     "iso": "EZ",
     "country": "Azores",
     "countryAlt": [],
@@ -196,8 +197,8 @@ window.DATA = [
     "flag": "svg/ez.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Overseas Territory", "Star"]},
+{
     "iso": "BS",
     "country": "Bahamas",
     "countryAlt": [
@@ -208,8 +209,8 @@ window.DATA = [
     "flag": "svg/bs.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "BH",
     "country": "Bahrain",
     "countryAlt": [],
@@ -218,8 +219,8 @@ window.DATA = [
     "flag": "svg/bh.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "BD",
     "country": "Bangladesh",
     "countryAlt": [],
@@ -228,8 +229,8 @@ window.DATA = [
     "flag": "svg/bd.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "BB",
     "country": "Barbados",
     "countryAlt": [],
@@ -238,8 +239,8 @@ window.DATA = [
     "flag": "svg/bb.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "BY",
     "country": "Belarus",
     "countryAlt": [],
@@ -248,8 +249,8 @@ window.DATA = [
     "flag": "svg/by.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "BE",
     "country": "Belgium",
     "countryAlt": [],
@@ -258,8 +259,8 @@ window.DATA = [
     "flag": "svg/be.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "BZ",
     "country": "Belize",
     "countryAlt": [],
@@ -268,8 +269,8 @@ window.DATA = [
     "flag": "svg/bz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "BJ",
     "country": "Benin",
     "countryAlt": [],
@@ -280,8 +281,8 @@ window.DATA = [
     "flag": "svg/bj.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow"]},
+{
     "iso": "BM",
     "country": "Bermuda",
     "countryAlt": [],
@@ -290,8 +291,8 @@ window.DATA = [
     "flag": "svg/bm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Union Jack"]},
+{
     "iso": "BT",
     "country": "Bhutan",
     "countryAlt": [],
@@ -300,8 +301,8 @@ window.DATA = [
     "flag": "svg/bt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "BO",
     "country": "Bolivia",
     "countryAlt": [],
@@ -310,8 +311,8 @@ window.DATA = [
     "flag": "svg/bo.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Green/Red/Yellow", "South America"]},
+{
     "iso": "OB",
     "country": "Bonaire",
     "countryAlt": [],
@@ -320,8 +321,8 @@ window.DATA = [
     "flag": "svg/ob.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Star"]},
+{
     "iso": "BA",
     "country": "Bosnia and Herzegovina",
     "countryAlt": [
@@ -332,8 +333,8 @@ window.DATA = [
     "flag": "svg/ba.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Star"]},
+{
     "iso": "BW",
     "country": "Botswana",
     "countryAlt": [],
@@ -342,8 +343,8 @@ window.DATA = [
     "flag": "svg/bw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "BR",
     "country": "Brazil",
     "countryAlt": [],
@@ -352,8 +353,8 @@ window.DATA = [
     "flag": "svg/br.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America"]},
+{
     "iso": "IO",
     "country": "British Indian Ocean Territory",
     "countryAlt": [
@@ -364,8 +365,8 @@ window.DATA = [
     "flag": "svg/io.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Overseas Territory", "Union Jack"]},
+{
     "iso": "VG",
     "country": "British Virgin Islands",
     "countryAlt": [
@@ -376,8 +377,8 @@ window.DATA = [
     "flag": "svg/vg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Union Jack"]},
+{
     "iso": "BN",
     "country": "Brunei",
     "countryAlt": [],
@@ -386,8 +387,8 @@ window.DATA = [
     "flag": "svg/bn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "BG",
     "country": "Bulgaria",
     "countryAlt": [],
@@ -396,8 +397,8 @@ window.DATA = [
     "flag": "svg/bg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "BF",
     "country": "Burkina Faso",
     "countryAlt": [],
@@ -406,8 +407,8 @@ window.DATA = [
     "flag": "svg/bf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "BI",
     "country": "Burundi",
     "countryAlt": [],
@@ -416,8 +417,8 @@ window.DATA = [
     "flag": "svg/bi.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "CV",
     "country": "Cabo Verde",
     "countryAlt": [
@@ -428,8 +429,8 @@ window.DATA = [
     "flag": "svg/cv.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Red/White/Blue", "Star"]},
+{
     "iso": "KH",
     "country": "Cambodia",
     "countryAlt": [],
@@ -438,8 +439,8 @@ window.DATA = [
     "flag": "svg/kh.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Red/White/Blue"]},
+{
     "iso": "CM",
     "country": "Cameroon",
     "countryAlt": [],
@@ -450,8 +451,8 @@ window.DATA = [
     "flag": "svg/cm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "CA",
     "country": "Canada",
     "countryAlt": [],
@@ -460,8 +461,8 @@ window.DATA = [
     "flag": "svg/ca.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["North America"]},
+{
     "iso": "KY",
     "country": "Cayman Islands",
     "countryAlt": [],
@@ -470,8 +471,8 @@ window.DATA = [
     "flag": "svg/ky.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Union Jack"]},
+{
     "iso": "CF",
     "country": "Central African Republic",
     "countryAlt": [
@@ -482,8 +483,8 @@ window.DATA = [
     "flag": "svg/cf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "TD",
     "country": "Chad",
     "countryAlt": [],
@@ -492,8 +493,8 @@ window.DATA = [
     "flag": "svg/td.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "CL",
     "country": "Chile",
     "countryAlt": [],
@@ -502,8 +503,8 @@ window.DATA = [
     "flag": "svg/cl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Red/White/Blue", "South America", "Star"]},
+{
     "iso": "CN",
     "country": "China",
     "countryAlt": [],
@@ -512,8 +513,8 @@ window.DATA = [
     "flag": "svg/cn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "CX",
     "country": "Christmas Island",
     "countryAlt": [],
@@ -522,8 +523,8 @@ window.DATA = [
     "flag": "svg/cx.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Southern Cross", "Star"]},
+{
     "iso": "CC",
     "country": "Cocos (Keeling) Islands",
     "countryAlt": [
@@ -535,8 +536,8 @@ window.DATA = [
     "flag": "svg/cc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Southern Cross", "Star"]},
+{
     "iso": "CO",
     "country": "Colombia",
     "countryAlt": [],
@@ -547,8 +548,8 @@ window.DATA = [
     "flag": "svg/co.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America"]},
+{
     "iso": "KM",
     "country": "Comoros",
     "countryAlt": [],
@@ -557,8 +558,8 @@ window.DATA = [
     "flag": "svg/km.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Islamic", "Star"]},
+{
     "iso": "CK",
     "country": "Cook Islands",
     "countryAlt": [],
@@ -567,8 +568,8 @@ window.DATA = [
     "flag": "svg/ck.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Star", "Union Jack"]},
+{
     "iso": "CR",
     "country": "Costa Rica",
     "countryAlt": [],
@@ -579,8 +580,8 @@ window.DATA = [
     "flag": "svg/cr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Red/White/Blue"]},
+{
     "iso": "CI",
     "country": "Côte d’Ivoire",
     "countryAlt": [
@@ -592,8 +593,8 @@ window.DATA = [
     "flag": "svg/ci.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "HR",
     "country": "Croatia",
     "countryAlt": [],
@@ -602,8 +603,8 @@ window.DATA = [
     "flag": "svg/hr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "CU",
     "country": "Cuba",
     "countryAlt": [],
@@ -612,8 +613,8 @@ window.DATA = [
     "flag": "svg/cu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Red/White/Blue", "Star"]},
+{
     "iso": "CW",
     "country": "Curaçao",
     "countryAlt": [
@@ -624,8 +625,8 @@ window.DATA = [
     "flag": "svg/cw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Star"]},
+{
     "iso": "CY",
     "country": "Cyprus",
     "countryAlt": [],
@@ -634,8 +635,8 @@ window.DATA = [
     "flag": "svg/cy.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "CZ",
     "country": "Czechia",
     "countryAlt": [
@@ -646,8 +647,8 @@ window.DATA = [
     "flag": "svg/cz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "CD",
     "country": "Democratic Republic of Congo",
     "countryAlt": [
@@ -658,8 +659,8 @@ window.DATA = [
     "flag": "svg/cd.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "DK",
     "country": "Denmark",
     "countryAlt": [],
@@ -668,8 +669,8 @@ window.DATA = [
     "flag": "svg/dk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "DJ",
     "country": "Djibouti",
     "countryAlt": [],
@@ -678,8 +679,8 @@ window.DATA = [
     "flag": "svg/dj.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "DM",
     "country": "Dominica",
     "countryAlt": [],
@@ -688,8 +689,8 @@ window.DATA = [
     "flag": "svg/dm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Cross"]},
+{
     "iso": "DO",
     "country": "Dominican Republic",
     "countryAlt": [],
@@ -698,8 +699,8 @@ window.DATA = [
     "flag": "svg/do.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Cross", "Red/White/Blue"]},
+{
     "iso": "EC",
     "country": "Ecuador",
     "countryAlt": [],
@@ -708,8 +709,8 @@ window.DATA = [
     "flag": "svg/ec.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America"]},
+{
     "iso": "EG",
     "country": "Egypt",
     "countryAlt": [],
@@ -718,8 +719,8 @@ window.DATA = [
     "flag": "svg/eg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Pan-arab"]},
+{
     "iso": "SV",
     "country": "El Salvador",
     "countryAlt": [],
@@ -728,8 +729,8 @@ window.DATA = [
     "flag": "svg/sv.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "GB-ENG",
     "country": "England",
     "countryAlt": [],
@@ -738,8 +739,8 @@ window.DATA = [
     "flag": "svg/gb-eng.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes United Kingdom"
-  },
-  {
+  , groups: ["Cross", "Duplicate Capital", "Europe"]},
+{
     "iso": "GQ",
     "country": "Equatorial Guinea",
     "countryAlt": [],
@@ -748,8 +749,8 @@ window.DATA = [
     "flag": "svg/gq.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "ER",
     "country": "Eritrea",
     "countryAlt": [],
@@ -758,8 +759,8 @@ window.DATA = [
     "flag": "svg/er.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "EE",
     "country": "Estonia",
     "countryAlt": [],
@@ -768,8 +769,8 @@ window.DATA = [
     "flag": "svg/ee.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "SZ",
     "country": "Eswatini",
     "countryAlt": [],
@@ -778,8 +779,8 @@ window.DATA = [
     "flag": "svg/sz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "ET",
     "country": "Ethiopia",
     "countryAlt": [],
@@ -788,8 +789,8 @@ window.DATA = [
     "flag": "svg/et.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "FK",
     "country": "Falkland Islands",
     "countryAlt": [],
@@ -798,8 +799,8 @@ window.DATA = [
     "flag": "svg/fk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America", "Union Jack"]},
+{
     "iso": "FO",
     "country": "Faroe Islands",
     "countryAlt": [],
@@ -810,8 +811,8 @@ window.DATA = [
     "flag": "svg/fo.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe", "Overseas Territory", "Red/White/Blue"]},
+{
     "iso": "FJ",
     "country": "Fiji",
     "countryAlt": [],
@@ -820,8 +821,8 @@ window.DATA = [
     "flag": "svg/fj.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Union Jack"]},
+{
     "iso": "FI",
     "country": "Finland",
     "countryAlt": [],
@@ -830,8 +831,8 @@ window.DATA = [
     "flag": "svg/fi.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "FR",
     "country": "France",
     "countryAlt": [],
@@ -840,8 +841,8 @@ window.DATA = [
     "flag": "svg/fr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "GF",
     "country": "French Guiana",
     "countryAlt": [],
@@ -850,8 +851,8 @@ window.DATA = [
     "flag": "svg/gf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Green/Red/Yellow", "South America", "Star"]},
+{
     "iso": "PF",
     "country": "French Polynesia",
     "countryAlt": [],
@@ -860,8 +861,8 @@ window.DATA = [
     "flag": "svg/pf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory"]},
+{
     "iso": "TF",
     "country": "French Southern Territories",
     "countryAlt": [
@@ -875,8 +876,8 @@ window.DATA = [
     "flag": "svg/tf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Overseas Territory", "Red/White/Blue"]},
+{
     "iso": "GA",
     "country": "Gabon",
     "countryAlt": [],
@@ -885,8 +886,8 @@ window.DATA = [
     "flag": "svg/ga.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "GM",
     "country": "Gambia",
     "countryAlt": [
@@ -897,8 +898,8 @@ window.DATA = [
     "flag": "svg/gm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "GE",
     "country": "Georgia",
     "countryAlt": [],
@@ -907,8 +908,8 @@ window.DATA = [
     "flag": "svg/ge.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "DE",
     "country": "Germany",
     "countryAlt": [],
@@ -917,8 +918,8 @@ window.DATA = [
     "flag": "svg/de.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "GH",
     "country": "Ghana",
     "countryAlt": [],
@@ -927,8 +928,8 @@ window.DATA = [
     "flag": "svg/gh.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "GI",
     "country": "Gibraltar",
     "countryAlt": [],
@@ -937,8 +938,8 @@ window.DATA = [
     "flag": "svg/gi.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Overseas Territory"]},
+{
     "iso": "GR",
     "country": "Greece",
     "countryAlt": [],
@@ -947,8 +948,8 @@ window.DATA = [
     "flag": "svg/gr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "GL",
     "country": "Greenland",
     "countryAlt": [],
@@ -957,8 +958,8 @@ window.DATA = [
     "flag": "svg/gl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Overseas Territory"]},
+{
     "iso": "GD",
     "country": "Grenada",
     "countryAlt": [],
@@ -973,8 +974,8 @@ window.DATA = [
     "flag": "svg/gd.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Green/Red/Yellow", "Star"]},
+{
     "iso": "GP",
     "country": "Guadeloupe",
     "countryAlt": [],
@@ -985,8 +986,8 @@ window.DATA = [
     "flag": "svg/gp.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory"]},
+{
     "iso": "GU",
     "country": "Guam",
     "countryAlt": [],
@@ -997,8 +998,8 @@ window.DATA = [
     "flag": "svg/gu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory"]},
+{
     "iso": "GT",
     "country": "Guatemala",
     "countryAlt": [],
@@ -1007,8 +1008,8 @@ window.DATA = [
     "flag": "svg/gt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "GG",
     "country": "Guernsey",
     "countryAlt": [],
@@ -1020,8 +1021,8 @@ window.DATA = [
     "flag": "svg/gg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe", "Overseas Territory"]},
+{
     "iso": "GN",
     "country": "Guinea",
     "countryAlt": [],
@@ -1030,8 +1031,8 @@ window.DATA = [
     "flag": "svg/gn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow"]},
+{
     "iso": "GW",
     "country": "Guinea-Bissau",
     "countryAlt": [],
@@ -1040,8 +1041,8 @@ window.DATA = [
     "flag": "svg/gw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "GY",
     "country": "Guyana",
     "countryAlt": [],
@@ -1050,8 +1051,8 @@ window.DATA = [
     "flag": "svg/gy.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes Guyana"
-  },
-  {
+  , groups: ["Duplicate Capital", "Green/Red/Yellow", "South America"]},
+{
     "iso": "HT",
     "country": "Haiti",
     "countryAlt": [],
@@ -1062,8 +1063,8 @@ window.DATA = [
     "flag": "svg/ht.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Red/White/Blue"]},
+{
     "iso": "VA",
     "country": "Holy See",
     "countryAlt": [
@@ -1075,8 +1076,8 @@ window.DATA = [
     "flag": "svg/va.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "HN",
     "country": "Honduras",
     "countryAlt": [],
@@ -1085,8 +1086,8 @@ window.DATA = [
     "flag": "svg/hn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Star"]},
+{
     "iso": "HK",
     "country": "Hong Kong",
     "countryAlt": [],
@@ -1095,8 +1096,8 @@ window.DATA = [
     "flag": "svg/hk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Administrative Region", "Asia"]},
+{
     "iso": "HU",
     "country": "Hungary",
     "countryAlt": [],
@@ -1105,8 +1106,8 @@ window.DATA = [
     "flag": "svg/hu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "IS",
     "country": "Iceland",
     "countryAlt": [],
@@ -1115,8 +1116,8 @@ window.DATA = [
     "flag": "svg/is.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe", "Red/White/Blue"]},
+{
     "iso": "IN",
     "country": "India",
     "countryAlt": [],
@@ -1125,8 +1126,8 @@ window.DATA = [
     "flag": "svg/in.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "ID",
     "country": "Indonesia",
     "countryAlt": [],
@@ -1135,8 +1136,8 @@ window.DATA = [
     "flag": "svg/id.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "IR",
     "country": "Iran",
     "countryAlt": [],
@@ -1145,8 +1146,8 @@ window.DATA = [
     "flag": "svg/ir.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "IQ",
     "country": "Iraq",
     "countryAlt": [],
@@ -1155,8 +1156,8 @@ window.DATA = [
     "flag": "svg/iq.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab"]},
+{
     "iso": "IE",
     "country": "Ireland",
     "countryAlt": [
@@ -1168,8 +1169,8 @@ window.DATA = [
     "flag": "svg/ie.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "IM",
     "country": "Isle of Man",
     "countryAlt": [],
@@ -1178,8 +1179,8 @@ window.DATA = [
     "flag": "svg/im.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Overseas Territory"]},
+{
     "iso": "IL",
     "country": "Israel",
     "countryAlt": [],
@@ -1188,8 +1189,8 @@ window.DATA = [
     "flag": "svg/il.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "IT",
     "country": "Italy",
     "countryAlt": [],
@@ -1198,8 +1199,8 @@ window.DATA = [
     "flag": "svg/it.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "JM",
     "country": "Jamaica",
     "countryAlt": [],
@@ -1208,8 +1209,8 @@ window.DATA = [
     "flag": "svg/jm.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes Jamaica"
-  },
-  {
+  , groups: ["Central America", "Duplicate Capital"]},
+{
     "iso": "JP",
     "country": "Japan",
     "countryAlt": [],
@@ -1218,8 +1219,8 @@ window.DATA = [
     "flag": "svg/jp.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "JE",
     "country": "Jersey",
     "countryAlt": [],
@@ -1228,8 +1229,8 @@ window.DATA = [
     "flag": "svg/je.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Overseas Territory"]},
+{
     "iso": "JO",
     "country": "Jordan",
     "countryAlt": [],
@@ -1238,8 +1239,8 @@ window.DATA = [
     "flag": "svg/jo.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab", "Star"]},
+{
     "iso": "KZ",
     "country": "Kazakhstan",
     "countryAlt": [],
@@ -1248,8 +1249,8 @@ window.DATA = [
     "flag": "svg/kz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "KE",
     "country": "Kenya",
     "countryAlt": [],
@@ -1258,8 +1259,8 @@ window.DATA = [
     "flag": "svg/ke.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "KI",
     "country": "Kiribati",
     "countryAlt": [],
@@ -1268,8 +1269,8 @@ window.DATA = [
     "flag": "svg/ki.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania"]},
+{
     "iso": "XK",
     "country": "Kosovo",
     "countryAlt": [],
@@ -1278,8 +1279,8 @@ window.DATA = [
     "flag": "svg/xk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Disputed", "Europe", "Star"]},
+{
     "iso": "KW",
     "country": "Kuwait",
     "countryAlt": [],
@@ -1288,8 +1289,8 @@ window.DATA = [
     "flag": "svg/kw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab"]},
+{
     "iso": "KG",
     "country": "Kyrgyzstan",
     "countryAlt": [],
@@ -1298,8 +1299,8 @@ window.DATA = [
     "flag": "svg/kg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "LA",
     "country": "Laos",
     "countryAlt": [],
@@ -1308,8 +1309,8 @@ window.DATA = [
     "flag": "svg/la.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "LV",
     "country": "Latvia",
     "countryAlt": [],
@@ -1318,8 +1319,8 @@ window.DATA = [
     "flag": "svg/lv.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "LB",
     "country": "Lebanon",
     "countryAlt": [],
@@ -1328,8 +1329,8 @@ window.DATA = [
     "flag": "svg/lb.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "LS",
     "country": "Lesotho",
     "countryAlt": [],
@@ -1338,8 +1339,8 @@ window.DATA = [
     "flag": "svg/ls.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "LR",
     "country": "Liberia",
     "countryAlt": [],
@@ -1348,8 +1349,8 @@ window.DATA = [
     "flag": "svg/lr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "LY",
     "country": "Libya",
     "countryAlt": [],
@@ -1358,8 +1359,8 @@ window.DATA = [
     "flag": "svg/ly.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Islamic", "Pan-arab", "Star"]},
+{
     "iso": "LI",
     "country": "Liechtenstein",
     "countryAlt": [],
@@ -1368,8 +1369,8 @@ window.DATA = [
     "flag": "svg/li.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "LT",
     "country": "Lithuania",
     "countryAlt": [],
@@ -1378,8 +1379,8 @@ window.DATA = [
     "flag": "svg/lt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Green/Red/Yellow"]},
+{
     "iso": "LU",
     "country": "Luxembourg",
     "countryAlt": [],
@@ -1388,8 +1389,8 @@ window.DATA = [
     "flag": "svg/lu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "MO",
     "country": "Macao",
     "countryAlt": [
@@ -1402,8 +1403,8 @@ window.DATA = [
     "flag": "svg/mo.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Administrative Region", "Asia", "Star"]},
+{
     "iso": "MG",
     "country": "Madagascar",
     "countryAlt": [],
@@ -1412,8 +1413,8 @@ window.DATA = [
     "flag": "svg/mg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "MI",
     "country": "Madeira",
     "countryAlt": [],
@@ -1422,8 +1423,8 @@ window.DATA = [
     "flag": "svg/mi.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Overseas Territory"]},
+{
     "iso": "MW",
     "country": "Malawi",
     "countryAlt": [],
@@ -1432,8 +1433,8 @@ window.DATA = [
     "flag": "svg/mw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "MY",
     "country": "Malaysia",
     "countryAlt": [],
@@ -1442,8 +1443,8 @@ window.DATA = [
     "flag": "svg/my.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Islamic", "Star"]},
+{
     "iso": "MV",
     "country": "Maldives",
     "countryAlt": [],
@@ -1454,8 +1455,8 @@ window.DATA = [
     "flag": "svg/mv.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "ML",
     "country": "Mali",
     "countryAlt": [],
@@ -1464,8 +1465,8 @@ window.DATA = [
     "flag": "svg/ml.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow"]},
+{
     "iso": "MT",
     "country": "Malta",
     "countryAlt": [],
@@ -1474,8 +1475,8 @@ window.DATA = [
     "flag": "svg/mt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "MH",
     "country": "Marshall Islands",
     "countryAlt": [],
@@ -1484,8 +1485,8 @@ window.DATA = [
     "flag": "svg/mh.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Star"]},
+{
     "iso": "MQ",
     "country": "Martinique",
     "countryAlt": [],
@@ -1496,8 +1497,8 @@ window.DATA = [
     "flag": "svg/mq.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory"]},
+{
     "iso": "MR",
     "country": "Mauritania",
     "countryAlt": [],
@@ -1506,8 +1507,8 @@ window.DATA = [
     "flag": "svg/mr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Islamic", "Star"]},
+{
     "iso": "MU",
     "country": "Mauritius",
     "countryAlt": [],
@@ -1516,8 +1517,8 @@ window.DATA = [
     "flag": "svg/mu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "YT",
     "country": "Mayotte",
     "countryAlt": [],
@@ -1526,8 +1527,8 @@ window.DATA = [
     "flag": "svg/yt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Overseas Territory"]},
+{
     "iso": "MX",
     "country": "Mexico",
     "countryAlt": [],
@@ -1536,8 +1537,8 @@ window.DATA = [
     "flag": "svg/mx.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["North America"]},
+{
     "iso": "FM",
     "country": "Micronesia",
     "countryAlt": [
@@ -1548,8 +1549,8 @@ window.DATA = [
     "flag": "svg/fm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Star"]},
+{
     "iso": "MD",
     "country": "Moldova",
     "countryAlt": [],
@@ -1560,8 +1561,8 @@ window.DATA = [
     "flag": "svg/md.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "MC",
     "country": "Monaco",
     "countryAlt": [],
@@ -1570,8 +1571,8 @@ window.DATA = [
     "flag": "svg/mc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "MN",
     "country": "Mongolia",
     "countryAlt": [],
@@ -1580,8 +1581,8 @@ window.DATA = [
     "flag": "svg/mn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "ME",
     "country": "Montenegro",
     "countryAlt": [],
@@ -1590,8 +1591,8 @@ window.DATA = [
     "flag": "svg/me.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "MS",
     "country": "Montserrat",
     "countryAlt": [],
@@ -1600,8 +1601,8 @@ window.DATA = [
     "flag": "svg/ms.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Union Jack"]},
+{
     "iso": "MA",
     "country": "Morocco",
     "countryAlt": [],
@@ -1610,8 +1611,8 @@ window.DATA = [
     "flag": "svg/ma.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "MZ",
     "country": "Mozambique",
     "countryAlt": [],
@@ -1620,8 +1621,8 @@ window.DATA = [
     "flag": "svg/mz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "MM",
     "country": "Myanmar",
     "countryAlt": [],
@@ -1630,8 +1631,8 @@ window.DATA = [
     "flag": "svg/mm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Green/Red/Yellow", "Star"]},
+{
     "iso": "NA",
     "country": "Namibia",
     "countryAlt": [],
@@ -1640,8 +1641,8 @@ window.DATA = [
     "flag": "svg/na.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "NR",
     "country": "Nauru",
     "countryAlt": [],
@@ -1650,8 +1651,8 @@ window.DATA = [
     "flag": "svg/nr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Star"]},
+{
     "iso": "NP",
     "country": "Nepal",
     "countryAlt": [],
@@ -1660,8 +1661,8 @@ window.DATA = [
     "flag": "svg/np.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "NL",
     "country": "Netherlands",
     "countryAlt": [],
@@ -1670,8 +1671,8 @@ window.DATA = [
     "flag": "svg/nl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "NC",
     "country": "New Caledonia",
     "countryAlt": [],
@@ -1682,8 +1683,8 @@ window.DATA = [
     "flag": "svg/nc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory"]},
+{
     "iso": "NZ",
     "country": "New Zealand",
     "countryAlt": [],
@@ -1692,8 +1693,8 @@ window.DATA = [
     "flag": "svg/nz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Southern Cross", "Star", "Union Jack"]},
+{
     "iso": "NI",
     "country": "Nicaragua",
     "countryAlt": [],
@@ -1702,8 +1703,8 @@ window.DATA = [
     "flag": "svg/ni.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "NE",
     "country": "Niger",
     "countryAlt": [],
@@ -1712,8 +1713,8 @@ window.DATA = [
     "flag": "svg/ne.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "NG",
     "country": "Nigeria",
     "countryAlt": [],
@@ -1722,8 +1723,8 @@ window.DATA = [
     "flag": "svg/ng.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "NU",
     "country": "Niue",
     "countryAlt": [],
@@ -1732,8 +1733,8 @@ window.DATA = [
     "flag": "svg/nu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Union Jack"]},
+{
     "iso": "NF",
     "country": "Norfolk Island",
     "countryAlt": [],
@@ -1742,8 +1743,8 @@ window.DATA = [
     "flag": "svg/nf.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes Jamaica"
-  },
-  {
+  , groups: ["Duplicate Capital", "Oceania", "Overseas Territory"]},
+{
     "iso": "KP",
     "country": "North Korea",
     "countryAlt": [
@@ -1755,8 +1756,8 @@ window.DATA = [
     "flag": "svg/kp.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "MK",
     "country": "North Macedonia",
     "countryAlt": [
@@ -1768,8 +1769,8 @@ window.DATA = [
     "flag": "svg/mk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "CP",
     "country": "Northern Cyprus",
     "countryAlt": [
@@ -1781,8 +1782,8 @@ window.DATA = [
     "flag": "svg/cp.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Disputed", "Europe", "Islamic", "Star"]},
+{
     "iso": "GB-NIR",
     "country": "Northern Ireland",
     "countryAlt": [
@@ -1794,8 +1795,8 @@ window.DATA = [
     "flag": "svg/gb-nir.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "MP",
     "country": "Northern Mariana Islands",
     "countryAlt": [],
@@ -1804,8 +1805,8 @@ window.DATA = [
     "flag": "svg/mp.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Star"]},
+{
     "iso": "NO",
     "country": "Norway",
     "countryAlt": [],
@@ -1814,8 +1815,8 @@ window.DATA = [
     "flag": "svg/no.svg",
     "flagDupGroup": "Yes Norway",
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Duplicate Flag", "Europe", "Red/White/Blue"]},
+{
     "iso": "OM",
     "country": "Oman",
     "countryAlt": [],
@@ -1824,8 +1825,8 @@ window.DATA = [
     "flag": "svg/om.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "PK",
     "country": "Pakistan",
     "countryAlt": [],
@@ -1834,8 +1835,8 @@ window.DATA = [
     "flag": "svg/pk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Islamic", "Star"]},
+{
     "iso": "PW",
     "country": "Palau",
     "countryAlt": [],
@@ -1844,8 +1845,8 @@ window.DATA = [
     "flag": "svg/pw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania"]},
+{
     "iso": "PS",
     "country": "Palestine",
     "countryAlt": [
@@ -1856,8 +1857,8 @@ window.DATA = [
     "flag": "svg/ps.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab"]},
+{
     "iso": "PA",
     "country": "Panama",
     "countryAlt": [],
@@ -1866,8 +1867,8 @@ window.DATA = [
     "flag": "svg/pa.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Red/White/Blue", "Star"]},
+{
     "iso": "PG",
     "country": "Papua New Guinea",
     "countryAlt": [],
@@ -1876,8 +1877,8 @@ window.DATA = [
     "flag": "svg/pg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Southern Cross", "Star"]},
+{
     "iso": "PY",
     "country": "Paraguay",
     "countryAlt": [],
@@ -1888,8 +1889,8 @@ window.DATA = [
     "flag": "svg/py.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Red/White/Blue", "South America"]},
+{
     "iso": "PE",
     "country": "Peru",
     "countryAlt": [],
@@ -1898,8 +1899,8 @@ window.DATA = [
     "flag": "svg/pe.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America"]},
+{
     "iso": "PH",
     "country": "Philippines",
     "countryAlt": [],
@@ -1908,8 +1909,8 @@ window.DATA = [
     "flag": "svg/ph.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "PN",
     "country": "Pitcairn Islands",
     "countryAlt": [
@@ -1920,8 +1921,8 @@ window.DATA = [
     "flag": "svg/pn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Union Jack"]},
+{
     "iso": "PL",
     "country": "Poland",
     "countryAlt": [],
@@ -1930,8 +1931,8 @@ window.DATA = [
     "flag": "svg/pl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "PT",
     "country": "Portugal",
     "countryAlt": [],
@@ -1940,8 +1941,8 @@ window.DATA = [
     "flag": "svg/pt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "PR",
     "country": "Puerto Rico",
     "countryAlt": [],
@@ -1950,8 +1951,8 @@ window.DATA = [
     "flag": "svg/pr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Red/White/Blue", "Star"]},
+{
     "iso": "QA",
     "country": "Qatar",
     "countryAlt": [],
@@ -1960,8 +1961,8 @@ window.DATA = [
     "flag": "svg/qa.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "CG",
     "country": "Republic of Congo",
     "countryAlt": [
@@ -1972,8 +1973,8 @@ window.DATA = [
     "flag": "svg/cg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow"]},
+{
     "iso": "RE",
     "country": "Réunion",
     "countryAlt": [
@@ -1986,8 +1987,8 @@ window.DATA = [
     "flag": "svg/re.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Overseas Territory"]},
+{
     "iso": "RO",
     "country": "Romania",
     "countryAlt": [],
@@ -1996,8 +1997,8 @@ window.DATA = [
     "flag": "svg/ro.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "RU",
     "country": "Russia",
     "countryAlt": [],
@@ -2006,8 +2007,8 @@ window.DATA = [
     "flag": "svg/ru.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Europe", "Red/White/Blue"]},
+{
     "iso": "RW",
     "country": "Rwanda",
     "countryAlt": [],
@@ -2016,8 +2017,8 @@ window.DATA = [
     "flag": "svg/rw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "DC",
     "country": "Saba",
     "countryAlt": [],
@@ -2029,8 +2030,8 @@ window.DATA = [
     "flag": "svg/dc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Star"]},
+{
     "iso": "BL",
     "country": "Saint Barthélemy",
     "countryAlt": [
@@ -2046,8 +2047,8 @@ window.DATA = [
     "flag": "svg/bl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory"]},
+{
     "iso": "SH",
     "country": "Saint Helena",
     "countryAlt": [
@@ -2059,8 +2060,8 @@ window.DATA = [
     "flag": "svg/sh.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Overseas Territory", "South America", "Union Jack"]},
+{
     "iso": "KN",
     "country": "Saint Kitts and Nevis",
     "countryAlt": [
@@ -2075,8 +2076,8 @@ window.DATA = [
     "flag": "svg/kn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Star"]},
+{
     "iso": "LC",
     "country": "Saint Lucia",
     "countryAlt": [
@@ -2088,8 +2089,8 @@ window.DATA = [
     "flag": "svg/lc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "MF",
     "country": "Saint Martin",
     "countryAlt": [
@@ -2101,8 +2102,8 @@ window.DATA = [
     "flag": "svg/mf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory"]},
+{
     "iso": "PM",
     "country": "Saint Pierre and Miquelon",
     "countryAlt": [
@@ -2119,8 +2120,8 @@ window.DATA = [
     "flag": "svg/pm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["North America", "Overseas Territory"]},
+{
     "iso": "VC",
     "country": "Saint Vincent and the Grenadines",
     "countryAlt": [
@@ -2135,8 +2136,8 @@ window.DATA = [
     "flag": "svg/vc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "WS",
     "country": "Samoa",
     "countryAlt": [],
@@ -2145,8 +2146,8 @@ window.DATA = [
     "flag": "svg/ws.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Southern Cross", "Star"]},
+{
     "iso": "SM",
     "country": "San Marino",
     "countryAlt": [],
@@ -2155,8 +2156,8 @@ window.DATA = [
     "flag": "svg/sm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "ST",
     "country": "São Tomé and Príncipe",
     "countryAlt": [
@@ -2170,8 +2171,8 @@ window.DATA = [
     "flag": "svg/st.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "SA",
     "country": "Saudi Arabia",
     "countryAlt": [],
@@ -2180,8 +2181,8 @@ window.DATA = [
     "flag": "svg/sa.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "GB-SCT",
     "country": "Scotland",
     "countryAlt": [],
@@ -2190,8 +2191,8 @@ window.DATA = [
     "flag": "svg/gb-sct.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "SN",
     "country": "Senegal",
     "countryAlt": [],
@@ -2200,8 +2201,8 @@ window.DATA = [
     "flag": "svg/sn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "RS",
     "country": "Serbia",
     "countryAlt": [],
@@ -2210,8 +2211,8 @@ window.DATA = [
     "flag": "svg/rs.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "SC",
     "country": "Seychelles",
     "countryAlt": [],
@@ -2220,8 +2221,8 @@ window.DATA = [
     "flag": "svg/sc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "SL",
     "country": "Sierra Leone",
     "countryAlt": [],
@@ -2230,8 +2231,8 @@ window.DATA = [
     "flag": "svg/sl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "SG",
     "country": "Singapore",
     "countryAlt": [],
@@ -2240,8 +2241,8 @@ window.DATA = [
     "flag": "svg/sg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "SU",
     "country": "Sint Eustatius",
     "countryAlt": [
@@ -2253,8 +2254,8 @@ window.DATA = [
     "flag": "svg/su.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes Aruba"
-  },
-  {
+  , groups: ["Central America", "Duplicate Capital", "Overseas Territory"]},
+{
     "iso": "SX",
     "country": "Sint Maarten",
     "countryAlt": [
@@ -2266,8 +2267,8 @@ window.DATA = [
     "flag": "svg/sx.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Red/White/Blue"]},
+{
     "iso": "SK",
     "country": "Slovakia",
     "countryAlt": [],
@@ -2276,8 +2277,8 @@ window.DATA = [
     "flag": "svg/sk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "SI",
     "country": "Slovenia",
     "countryAlt": [],
@@ -2286,8 +2287,8 @@ window.DATA = [
     "flag": "svg/si.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe", "Red/White/Blue"]},
+{
     "iso": "SB",
     "country": "Solomon Islands",
     "countryAlt": [],
@@ -2296,8 +2297,8 @@ window.DATA = [
     "flag": "svg/sb.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Star"]},
+{
     "iso": "SO",
     "country": "Somalia",
     "countryAlt": [],
@@ -2306,8 +2307,8 @@ window.DATA = [
     "flag": "svg/so.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Star"]},
+{
     "iso": "DS",
     "country": "Somaliland",
     "countryAlt": [],
@@ -2316,8 +2317,8 @@ window.DATA = [
     "flag": "svg/ds.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Disputed", "Pan-arab", "Star"]},
+{
     "iso": "ZA",
     "country": "South Africa",
     "countryAlt": [
@@ -2332,8 +2333,8 @@ window.DATA = [
     "flag": "svg/za.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "GS",
     "country": "South Georgia & South Sandwich Islands",
     "countryAlt": [
@@ -2349,8 +2350,8 @@ window.DATA = [
     "flag": "svg/gs.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Overseas Territory", "South America", "Union Jack"]},
+{
     "iso": "KR",
     "country": "South Korea",
     "countryAlt": [
@@ -2362,8 +2363,8 @@ window.DATA = [
     "flag": "svg/kr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "OS",
     "country": "South Ossetia",
     "countryAlt": [
@@ -2375,8 +2376,8 @@ window.DATA = [
     "flag": "svg/os.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Disputed", "Europe"]},
+{
     "iso": "SS",
     "country": "South Sudan",
     "countryAlt": [
@@ -2388,8 +2389,8 @@ window.DATA = [
     "flag": "svg/ss.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Pan-arab", "Star"]},
+{
     "iso": "ES",
     "country": "Spain",
     "countryAlt": [],
@@ -2398,8 +2399,8 @@ window.DATA = [
     "flag": "svg/es.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "LK",
     "country": "Sri Lanka",
     "countryAlt": [],
@@ -2410,8 +2411,8 @@ window.DATA = [
     "flag": "svg/lk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "SD",
     "country": "Sudan",
     "countryAlt": [],
@@ -2420,8 +2421,8 @@ window.DATA = [
     "flag": "svg/sd.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Pan-arab"]},
+{
     "iso": "SR",
     "country": "Suriname",
     "countryAlt": [],
@@ -2430,8 +2431,8 @@ window.DATA = [
     "flag": "svg/sr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Green/Red/Yellow", "South America", "Star"]},
+{
     "iso": "SJ",
     "country": "Svalbard",
     "countryAlt": [
@@ -2445,8 +2446,8 @@ window.DATA = [
     "flag": "svg/sj.svg",
     "flagDupGroup": "Yes Norway",
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Duplicate Flag", "Europe", "Overseas Territory", "Red/White/Blue"]},
+{
     "iso": "SE",
     "country": "Sweden",
     "countryAlt": [],
@@ -2455,8 +2456,8 @@ window.DATA = [
     "flag": "svg/se.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "CH",
     "country": "Switzerland",
     "countryAlt": [],
@@ -2465,8 +2466,8 @@ window.DATA = [
     "flag": "svg/ch.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Europe"]},
+{
     "iso": "SY",
     "country": "Syria",
     "countryAlt": [],
@@ -2475,8 +2476,8 @@ window.DATA = [
     "flag": "svg/sy.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab", "Star"]},
+{
     "iso": "TW",
     "country": "Taiwan",
     "countryAlt": [],
@@ -2485,8 +2486,8 @@ window.DATA = [
     "flag": "svg/tw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "TJ",
     "country": "Tajikistan",
     "countryAlt": [],
@@ -2495,8 +2496,8 @@ window.DATA = [
     "flag": "svg/tj.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "TZ",
     "country": "Tanzania",
     "countryAlt": [],
@@ -2505,8 +2506,8 @@ window.DATA = [
     "flag": "svg/tz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "TH",
     "country": "Thailand",
     "countryAlt": [],
@@ -2515,8 +2516,8 @@ window.DATA = [
     "flag": "svg/th.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia"]},
+{
     "iso": "TI",
     "country": "Tibet",
     "countryAlt": [],
@@ -2525,8 +2526,8 @@ window.DATA = [
     "flag": "svg/ti.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Disputed"]},
+{
     "iso": "TL",
     "country": "Timor-Leste",
     "countryAlt": [
@@ -2538,8 +2539,8 @@ window.DATA = [
     "flag": "svg/tl.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "TG",
     "country": "Togo",
     "countryAlt": [],
@@ -2550,8 +2551,8 @@ window.DATA = [
     "flag": "svg/tg.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]},
+{
     "iso": "TK",
     "country": "Tokelau",
     "countryAlt": [],
@@ -2560,8 +2561,8 @@ window.DATA = [
     "flag": "svg/tk.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory", "Southern Cross", "Star"]},
+{
     "iso": "TO",
     "country": "Tonga",
     "countryAlt": [],
@@ -2572,8 +2573,8 @@ window.DATA = [
     "flag": "svg/to.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Cross", "Oceania"]},
+{
     "iso": "TA",
     "country": "Transnistria",
     "countryAlt": [],
@@ -2582,8 +2583,8 @@ window.DATA = [
     "flag": "svg/ta.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Disputed", "Europe", "Star"]},
+{
     "iso": "TT",
     "country": "Trinidad & Tobago",
     "countryAlt": [
@@ -2594,8 +2595,8 @@ window.DATA = [
     "flag": "svg/tt.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America"]},
+{
     "iso": "CT",
     "country": "Tristan da Cunha",
     "countryAlt": [],
@@ -2604,8 +2605,8 @@ window.DATA = [
     "flag": "svg/ct.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Overseas Territory", "South America", "Union Jack"]},
+{
     "iso": "TN",
     "country": "Tunisia",
     "countryAlt": [],
@@ -2614,8 +2615,8 @@ window.DATA = [
     "flag": "svg/tn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Islamic", "Star"]},
+{
     "iso": "TR",
     "country": "Turkey",
     "countryAlt": [],
@@ -2624,8 +2625,8 @@ window.DATA = [
     "flag": "svg/tr.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Europe", "Islamic", "Star"]},
+{
     "iso": "TM",
     "country": "Turkmenistan",
     "countryAlt": [],
@@ -2634,8 +2635,8 @@ window.DATA = [
     "flag": "svg/tm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Islamic", "Star"]},
+{
     "iso": "TC",
     "country": "Turks & Caicos Islands",
     "countryAlt": [
@@ -2648,8 +2649,8 @@ window.DATA = [
     "flag": "svg/tc.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory", "Union Jack"]},
+{
     "iso": "TV",
     "country": "Tuvalu",
     "countryAlt": [],
@@ -2658,8 +2659,8 @@ window.DATA = [
     "flag": "svg/tv.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Star", "Union Jack"]},
+{
     "iso": "VI",
     "country": "U.S. Virgin Islands",
     "countryAlt": [
@@ -2672,8 +2673,8 @@ window.DATA = [
     "flag": "svg/vi.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Central America", "Overseas Territory"]},
+{
     "iso": "UG",
     "country": "Uganda",
     "countryAlt": [],
@@ -2682,8 +2683,8 @@ window.DATA = [
     "flag": "svg/ug.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa"]},
+{
     "iso": "UA",
     "country": "Ukraine",
     "countryAlt": [],
@@ -2694,8 +2695,8 @@ window.DATA = [
     "flag": "svg/ua.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "AE",
     "country": "United Arab Emirates",
     "countryAlt": [
@@ -2707,8 +2708,8 @@ window.DATA = [
     "flag": "svg/ae.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab"]},
+{
     "iso": "GB",
     "country": "United Kingdom",
     "countryAlt": [
@@ -2720,8 +2721,8 @@ window.DATA = [
     "flag": "svg/gb.svg",
     "flagDupGroup": null,
     "capDupGroup": "Yes United Kingdom"
-  },
-  {
+  , groups: ["Cross", "Duplicate Capital", "Europe", "Red/White/Blue", "Union Jack"]},
+{
     "iso": "US",
     "country": "United States",
     "countryAlt": [
@@ -2737,8 +2738,8 @@ window.DATA = [
     "flag": "svg/us.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["North America", "Red/White/Blue", "Star"]},
+{
     "iso": "UY",
     "country": "Uruguay",
     "countryAlt": [],
@@ -2747,8 +2748,8 @@ window.DATA = [
     "flag": "svg/uy.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America"]},
+{
     "iso": "UZ",
     "country": "Uzbekistan",
     "countryAlt": [],
@@ -2757,8 +2758,8 @@ window.DATA = [
     "flag": "svg/uz.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Islamic", "Star"]},
+{
     "iso": "VU",
     "country": "Vanuatu",
     "countryAlt": [],
@@ -2767,8 +2768,8 @@ window.DATA = [
     "flag": "svg/vu.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania"]},
+{
     "iso": "VE",
     "country": "Venezuela",
     "countryAlt": [],
@@ -2777,8 +2778,8 @@ window.DATA = [
     "flag": "svg/ve.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["South America", "Star"]},
+{
     "iso": "VN",
     "country": "Vietnam",
     "countryAlt": [],
@@ -2787,8 +2788,8 @@ window.DATA = [
     "flag": "svg/vn.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Star"]},
+{
     "iso": "GB-WLS",
     "country": "Wales",
     "countryAlt": [],
@@ -2797,8 +2798,8 @@ window.DATA = [
     "flag": "svg/gb-wls.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Europe"]},
+{
     "iso": "WF",
     "country": "Wallis & Futuna",
     "countryAlt": [
@@ -2809,8 +2810,8 @@ window.DATA = [
     "flag": "svg/wf.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Oceania", "Overseas Territory"]},
+{
     "iso": "EH",
     "country": "Western Sahara",
     "countryAlt": [],
@@ -2819,8 +2820,8 @@ window.DATA = [
     "flag": "svg/eh.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Disputed", "Islamic", "Pan-arab", "Star"]},
+{
     "iso": "YE",
     "country": "Yemen",
     "countryAlt": [],
@@ -2831,8 +2832,8 @@ window.DATA = [
     "flag": "svg/ye.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Asia", "Pan-arab"]},
+{
     "iso": "ZM",
     "country": "Zambia",
     "countryAlt": [],
@@ -2841,8 +2842,8 @@ window.DATA = [
     "flag": "svg/zm.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  },
-  {
+  , groups: ["Africa", "Green/Red/Yellow"]},
+{
     "iso": "ZW",
     "country": "Zimbabwe",
     "countryAlt": [],
@@ -2851,5 +2852,5 @@ window.DATA = [
     "flag": "svg/zw.svg",
     "flagDupGroup": null,
     "capDupGroup": null
-  }
+  , groups: ["Africa", "Green/Red/Yellow", "Star"]}
 ];
