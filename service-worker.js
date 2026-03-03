@@ -1,6 +1,6 @@
 
 /* geo-trainer V2 Service Worker */
-const VERSION='v2.0.0';
+const VERSION='v2.0.1';
 const CORE_CACHE=`core-${VERSION}`;
 const RUNTIME_SVG_CACHE=`svg-${VERSION}`;
 const CORE_ASSETS=['index.html','quiz.html','leaderboards.html','verify.html','manifest.webmanifest'];
