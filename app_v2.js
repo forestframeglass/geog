@@ -1,18 +1,16 @@
 
-// Geo Trainer V2 — gameplay (compat build v2.0.4, cleaned)
+// Geo Trainer V2 — gameplay (compat build v2.0.4)
 (function(){
   const MODES = ['flag-to-country','capital-to-country','country-to-capital','flag-to-capital'];
   const LB_PREFIX = 'gt.v2.lb.';
   const INIT_FLAG = 'gt.v2.init';
   console.log('[GT] app_v2 compat v2.0.4 loaded');
+
   try{
     if(!localStorage.getItem(INIT_FLAG)){
       const keys = Object.keys(localStorage);
       for(const k of keys){
-        if(k.startsWith('geo.lb.') ||
-           k.startsWith('lb.') ||
-           k.startsWith('gt.lb.') ||
-           k.startsWith('geo.v1.')){
+        if(k.startsWith('geo.lb.') || k.startsWith('lb.') || k.startsWith('gt.lb.') || k.startsWith('geo.v1.')){
           localStorage.removeItem(k);
         }
       }
@@ -59,10 +57,11 @@
   var USED_BY_CLUSTER = {};
 
   // Helpers
-  function toKey(s){ return (s==null? '' : String(s)).trim().toLowerCase().replace(/\s+/g,' '); }
+  function toKey(s){ return (s==null? '': String(s)).trim().toLowerCase().replace(/\s+/g,' '); }
   function asSet(arr){ var s=new Set(); (arr||[]).forEach(function(a){ s.add(toKey(a)); }); return s; }
   function shuffle(a){ var x=a.slice(); for(var i=x.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=x[i]; x[i]=x[j]; x[j]=t; } return x; }
   function fmtMS(ms){ var t=Math.floor(ms/1000); var m=String(Math.floor(t/60)).padStart(2,'0'); var s=String(t%60).padStart(2,'0'); var d=Math.floor((ms%1000)/100); return m+':'+s+'.'+d; }
+
   function updateRibbonPills(){
     var total = QUEUE.length || 0;
     var current = Math.min(qIndex + (finished ? 0 : 1), Math.max(total, 1));
@@ -73,11 +72,13 @@
     if (hudReveals) hudReveals.textContent = 'Reveals: '+reveals;
     if (hudMistakes) hudMistakes.textContent = 'Mistakes ('+wrongLog.length+')';
   }
+
   function lbKey(mode){ return LB_PREFIX+mode; }
   function loadLB(mode){ try{ return JSON.parse(localStorage.getItem(lbKey(mode))) || []; }catch(e){ return []; } }
   function saveLB(mode,list){ localStorage.setItem(lbKey(mode), JSON.stringify(list)); }
   function addLB(mode, ms, stats){ var item={ ms:ms, when: Date.now(), stats: stats||{} }; var list=loadLB(mode).concat(item).sort(function(a,b){return a.ms-b.ms;}).slice(0,10); saveLB(mode,list); renderLB(mode,item.when); }
   function renderLB(mode, latestWhen){ if(!leaderboardBody) return; var list=loadLB(mode); leaderboardBody.innerHTML=''; list.forEach(function(it,idx){ var tr=document.createElement('tr'); if(latestWhen && it.when===latestWhen) tr.classList.add('latest'); var timeStr = fmtMS(it.ms) + ((it.stats && it.stats.reveals>0)? '*':''); var cells=[ idx+1, timeStr, new Date(it.when).toISOString().slice(0,10), (it.stats&&it.stats.reveals)||0, (it.stats&&it.stats.bestStreak)||0 ]; cells.forEach(function(v){ var td=document.createElement('td'); td.textContent=String(v); tr.appendChild(td); }); leaderboardBody.appendChild(tr); }); }
+
   function clusterKey(q){
     if(q.type==='flag-to-country' || q.type==='flag-to-capital'){
       if(q.flagDupGroup) return 'flagdup::'+toKey(q.flagDupGroup);
@@ -101,15 +102,15 @@
   function updateCounters(){ if(qIndexEl) qIndexEl.textContent=Math.min(qIndex+1, QUEUE.length); if(remainingEl) remainingEl.textContent=Math.max(QUEUE.length - qIndex - (finished?0:1), 0); if(correctEl) correctEl.textContent=correct; if(streakEl) streakEl.textContent=streak; if(bestStreakEl) bestStreakEl.textContent=bestStreak; if(revealsEl) revealsEl.textContent=reveals; updateRibbonPills(); }
   function startTimer(){ startTs=performance.now(); clearInterval(tickHandle); tickHandle=setInterval(function(){ if(timerEl) timerEl.textContent=fmtMS(performance.now()-startTs + penaltyMs); }, 100); }
   function stopTimer(){ clearInterval(tickHandle); tickHandle=null; }
-  function renderQuestion(){ var q=QUEUE[qIndex]; if(!q) return; qShownTs=performance.now(); var info = buildUnionValidExcludingUsed(q); if(dupBadge){ if(info && info.rows && info.rows.length>1){ dupBadge.classList.remove('hidden'); dupBadge.textContent = "multiple answers available, don't reuse the same one"; } else { dupBadge.classList.add('hidden'); } } if(q.type==='flag-to-country' || q.type==='flag-to-capital'){ if(flagWrap) flagWrap.classList.remove('hidden'); if(flagImg) flagImg.src=q.flag; if(promptEl) promptEl.textContent = (q.type==='flag-to-country')? 'Which country is this flag?' : "What is the capital of this flag's country?"; } else { if(flagWrap) flagWrap.classList.add('hidden'); if(promptEl){ if(q.type==='capital-to-country') promptEl.innerHTML = 'Capital: <strong>'+q.prompt+'</strong> — which country?'; else promptEl.innerHTML = 'Country: <strong>'+q.prompt+'</strong> — what is the capital?'; } }
-    if(input){ input.value=''; input.disabled=false; }
-    if(revealBtn) revealBtn.disabled=false;
-    if(input) input.focus();
-    updateCounters();
-  }
+
+  function renderQuestion(){ var q=QUEUE[qIndex]; if(!q) return; qShownTs=performance.now(); var info = buildUnionValidExcludingUsed(q); if(dupBadge){ if(info && info.rows && info.rows.length>1){ dupBadge.classList.remove('hidden'); dupBadge.textContent = "multiple answers available, don't reuse the same one"; } else { dupBadge.classList.add('hidden'); } } if(q.type==='flag-to-country' || q.type==='flag-to-capital'){ if(flagWrap) flagWrap.classList.remove('hidden'); if(flagImg) flagImg.src=q.flag; if(promptEl) promptEl.textContent = (q.type==='flag-to-country')? 'Which country is this flag?' : "What is the capital of this flag's country?"; } else { if(flagWrap) flagWrap.classList.add('hidden'); if(promptEl){ if(q.type==='capital-to-country') promptEl.innerHTML = 'Capital: <strong>'+q.prompt+'</strong> — which country?'; else promptEl.innerHTML = 'Country: <strong>'+q.prompt+'</strong> — what is the capital?'; } } if(input){ input.value=''; input.disabled=false; } if(revealBtn) revealBtn.disabled=false; if(input) input.focus(); updateCounters(); }
+
   function pushRevealedEntry(q, guessText, displayAnswer){ if(!revealedBody) return; var row = document.createElement('tr'); var tdQ=document.createElement('td'); if(q.type==='flag-to-country' || q.type==='flag-to-capital'){ var img=document.createElement('img'); img.src=q.flag; img.alt=''; img.setAttribute('role','presentation'); img.setAttribute('aria-hidden','true'); tdQ.appendChild(img); } else { tdQ.textContent=q.prompt||''; } var tdA=document.createElement('td'); tdA.textContent=displayAnswer||''; var tdG=document.createElement('td'); tdG.textContent=guessText||''; row.appendChild(tdQ); row.appendChild(tdA); row.appendChild(tdG); revealedBody.prepend(row); }
+
   function revealCurrent(){ var q=QUEUE[qIndex]; if(!q) return; var corr=q.expect==='country'? Array.from(q.countrySet)[0] : Array.from(q.capitalSet)[0]; var disp=q.label||corr; reveals++; penaltyMs += 5000; var info=buildUnionValidExcludingUsed(q); consumeEntityForCluster(q, info, toKey(q.label)); pushRevealedEntry(q, input.value, disp); if(revealsEl) revealsEl.textContent=reveals; if(penaltyChipEl){ penaltyChipEl.classList.add('show'); setTimeout(function(){ penaltyChipEl.classList.remove('show'); }, 1000); } if(feedback){ feedback.textContent='Revealed (+5s penalty).'; feedback.className='feedback bad'; } updateRibbonPills(); nextQuestion(); }
+
   function nextQuestion(){ if(finished) return; qIndex++; if(qIndex>=QUEUE.length){ finished=true; stopTimer(); var elapsed=performance.now()-startTs + penaltyMs; addLB(MODE, elapsed, {reveals:reveals, bestStreak:bestStreak}); saveMistakes(MODE); if(feedback){ feedback.textContent='Done — '+fmtMS(elapsed)+'.'; feedback.className='feedback ok'; } if(input) input.disabled=true; if(revealBtn) revealBtn.disabled=true; updateRibbonPills(); return; } renderQuestion(); }
+
   function submitAnswer(val){ var q=QUEUE[qIndex]; if(!q) return; var info = buildUnionValidExcludingUsed(q); var set = info.valid; var norm = toKey(val); var entity=null; if(info && info.rows && info.rows.length){ for(var i=0;i<info.rows.length;i++){ var r=info.rows[i]; var ek=entityKeyForRow(r,q.expect); var aset=answerSetForRow(r,q.expect); if(aset.has(norm)){ entity=ek; break; } } if(entity && info.used && info.used.has(entity)){ if(feedback){ feedback.textContent='Already used that answer for this set — try its twin.'; feedback.className='feedback bad'; } streak=0; updateCounters(); return; } }
     if(set.has(norm)){
       correct++; streak++; bestStreak=Math.max(bestStreak, streak);
@@ -123,6 +124,7 @@
       streak=0; updateCounters();
     }
   }
+
   function saveMistakes(mode){ try{ var payload = { mode:mode, when: Date.now(), runId: runId, items: wrongLog }; localStorage.setItem('gt.v2.mistakes.latest', JSON.stringify(payload)); localStorage.setItem('gt.v2.mistakes.'+mode+'.latest', JSON.stringify(payload)); }catch(_){ } }
   function saveMistakesDraft(mode){ try{ var payload = { mode:mode, when: Date.now(), runId: runId, items: wrongLog }; localStorage.setItem('gt.v2.mistakes.draft', JSON.stringify(payload)); localStorage.setItem('gt.v2.mistakes.'+mode+'.draft', JSON.stringify(payload)); }catch(_){ } }
 
