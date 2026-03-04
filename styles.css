@@ -239,12 +239,11 @@ img, svg, video, canvas {
 #penaltyChip.show { display:inline-block !important; }
 
 
-/* Center the duplicate answers badge itself (not just its text) */
-#dupBadge{
-  display: block;                 /* occupy full line, allows auto margins */
+/* Center the duplicate answers badge without breaking .hidden */
+#dupBadge{ text-align: center; max-width: 100%; }
+#dupBadge:not(.hidden){
+  display: block;                 /* only when visible */
   margin: 4px auto 10px;          /* center horizontally */
-  text-align: center;             /* keep text centered */
-  width: -moz-fit-content;        /* Firefox fit-content fallback */
-  width: fit-content;             /* shrink to badge contents */
-  max-width: 100%;                /* avoid overflow on tiny screens */
+  width: -moz-fit-content;        /* Firefox fallback */
+  width: fit-content;             /* shrink to content */
 }
