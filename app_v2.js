@@ -1,4 +1,4 @@
-// Geo Trainer V2 — gameplay (compat build v2.0.4)
+// Geo Trainer V2 — gameplay (compat build v2.0.4) 
 (function(){
  const MODES = ['flag-to-country','capital-to-country','country-to-capital','flag-to-capital'];
  const LB_PREFIX = 'gt.v2.lb.';
