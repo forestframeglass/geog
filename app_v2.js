@@ -54,16 +54,31 @@
 
  // ===== NEW: Global Leaderboard helpers (token mint + submit) =====
  // Using your Supabase project + publishable key (RLS protects reads; writes via Edge Functions only)
- const SUPABASE_PUB = 'sb_publishable_cM0Dyt3sz5BDiJAd4MW8lg_gsCjGATD';
+ const SUPABASE_PUB = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53c2tyaG56dXNnbndzdm5tYmRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MDM0NDEsImV4cCI6MjA4ODI3OTQ0MX0.k29I_W8g22XT2InhJvGgeZanonkEuNIV-oVFBBEFvVQ';
  const SUPABASE_BASE = 'https://nwskrhnzusgnwsvnmbdp.supabase.co';
  let START_TOKEN = null; // populated at startGame; best-effort (offline OK)
- function getStartToken(mode){
-   try{
-     return fetch(SUPABASE_BASE + '/functions/v1/token?mode=' + encodeURIComponent(mode), {
-       headers: { 'Authorization': 'Bearer ' + SUPABASE_PUB }
-     }).then(r=> r.ok ? r.json() : null).then(j=> j && j.token || null).catch(()=>null);
-   }catch(_){ return Promise.resolve(null); }
- }
+
+
+async function getStartToken(mode){
+  const r = await fetch(
+    `${SUPABASE_BASE}/functions/v1/token?mode=${encodeURIComponent(mode)}`,
+    {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_PUB}`,
+        'apikey': SUPABASE_PUB,
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      credentials: 'omit'
+    }
+  );
+  if (!r.ok) throw new Error(`token ${r.status}`);
+  const j = await r.json();
+  return j?.token || null;
+}
+
+ 
  function submitGlobalResult(name, mode, elapsedMs, stats){
    try{
      if(!name || !START_TOKEN || !navigator.onLine) return;
