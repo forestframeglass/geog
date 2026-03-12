@@ -1,5 +1,39 @@
 // Geo Trainer V2 — gameplay (compat build v2.0.4) 
-(function(){
+(
+ 
+function getStoredPlayerName(){
+  return (localStorage.getItem('gt.v2.playerName') || '').trim();
+}
+function setStoredPlayerName(name){
+  localStorage.setItem('gt.v2.playerName', (name||'').trim());
+}
+function openNameDialog(onSave, onCancel){
+  const dlg = document.getElementById('nameDialog');
+  const form = document.getElementById('nameForm');
+  const input = document.getElementById('nameInput');
+  const cancel = document.getElementById('nameCancel');
+  if (!dlg || !form || !input) { onCancel && onCancel(); return; }
+  input.value = getStoredPlayerName();
+  dlg.classList.remove('hidden');
+  input.focus();
+
+  function cleanup(){
+    dlg.classList.add('hidden');
+    form.onsubmit = null;
+    cancel.onclick = null;
+  }
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    const val = (input.value || '').trim().slice(0,20);
+    if (!val) { input.focus(); return; }
+    setStoredPlayerName(val);
+    cleanup();
+    onSave && onSave(val);
+  };
+  cancel.onclick = () => { cleanup(); onCancel && onCancel(); };
+}
+ 
+ function(){
  const MODES = ['flag-to-country','capital-to-country','country-to-capital','flag-to-capital'];
  const LB_PREFIX = 'gt.v2.lb.';
  const INIT_FLAG = 'gt.v2.init';
@@ -140,7 +174,19 @@ async function getStartToken(mode){
    // ===== NEW: prompt for name & best-effort global submit =====
    try{
      var storedName = localStorage.getItem('gt.v2.playerName') || '';
-     var name = storedName || prompt('Enter your name for the global leaderboard (optional):','');
+     var name = storedName || const existingName = getStoredPlayerName();
+const send = (nm) => {
+  submitGlobalResult(nm, MODE, elapsed, { reveals: reveals, bestStreak: bestStreak });
+};
+
+// If we already have a stored name, use it; else show dialog
+if (existingName) {
+  send(existingName);
+} else {
+  openNameDialog((nm) => send(nm), () => {
+    // player cancelled; skip global submit
+  });
+};
      name = (name||'').trim();
      if (name) localStorage.setItem('gt.v2.playerName', name);
      submitGlobalResult(name, MODE, elapsed, {reveals:reveals, bestStreak:bestStreak});
