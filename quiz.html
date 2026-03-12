@@ -72,5 +72,21 @@
  </footer>
  <script src="data_v2.js"></script>
  <script src="app_v2.js"></script>
+
+<!-- Minimal name dialog -->
+<div id="nameDialog" class="name-dialog hidden" role="dialog" aria-modal="true" aria-labelledby="nameDialogTitle">
+  <div class="name-card">
+    <h3 id="nameDialogTitle">Add your name</h3>
+    <p class="muted">This name will appear on the global leaderboard.</p>
+    <form id="nameForm">
+      <input id="nameInput" type="text" maxlength="20" placeholder="Your name" required />
+      <div class="actions">
+        <button type="submit" class="btn-link">Save</button>
+        <button type="button" class="btn" id="nameCancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+ 
 </body>
 </html>
