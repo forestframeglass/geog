@@ -21,7 +21,7 @@
  // Do NOT use the publishable key (sb_publishable_...) as Bearer when Verify JWT is enabled.
  // Do NOT ever put the service role key in client-side code.
  const SUPABASE_BASE = 'https://nwskrhnzusgnwsvnmbdp.supabase.co';
- const SUPABASE_ANON_JWT = 'PASTE_YOUR_SUPABASE_ANON_JWT_HERE'; // eyJhbGciOi... (JWT with dots)
+ const SUPABASE_ANON_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53c2tyaG56dXNnbndzdm5tYmRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MDM0NDEsImV4cCI6MjA4ODI3OTQ0MX0.k29I_W8g22XT2InhJvGgeZanonkEuNIV-oVFBBEFvVQ'; // eyJhbGciOi... (JWT with dots)
  var START_TOKEN = null;
  async function getStartToken(mode){
   try{
